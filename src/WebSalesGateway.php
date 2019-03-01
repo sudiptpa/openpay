@@ -5,8 +5,7 @@ namespace Omnipay\Openpay;
 use Omnipay\Common\AbstractGateway;
 
 /**
- * Class WebSalesGateway
- * @package Omnipay\Openpay
+ * Class WebSalesGateway.
  */
 class WebSalesGateway extends AbstractGateway
 {
@@ -86,16 +85,6 @@ class WebSalesGateway extends AbstractGateway
     public function purchase(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\Openpay\Message\PurchaseRequest', $parameters);
-    }
-
-    /**
-     * @param array $parameters
-     *
-     * @return \Omnipay\Openpay\Message\RefundRequest
-     */
-    public function refund(array $parameters = [])
-    {
-        return $this->createRequest('\Omnipay\Openpay\Message\RefundRequest', $parameters);
     }
 
     /**
