@@ -2,7 +2,6 @@
 
 namespace Omnipay\Openpay\Message;
 
-use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
@@ -20,11 +19,6 @@ class OrderResponse extends AbstractResponse
         $this->data = $data;
     }
 
-    public function getStatus()
-    {
-        return (string) $this->data->status;
-    }
-
     public function getPlanID()
     {
         return (string) $this->data->PlanID;
@@ -36,10 +30,5 @@ class OrderResponse extends AbstractResponse
     public function isSuccessful()
     {
         return $this->getStatus() > 0 && $this->getPlanID();
-    }
-
-    public function getMessage()
-    {
-        return (string) $this->data->reason;
     }
 }
