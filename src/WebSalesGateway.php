@@ -5,8 +5,7 @@ namespace Omnipay\Openpay;
 use Omnipay\Common\AbstractGateway;
 
 /**
- * Class WebSalesGateway
- * @package Omnipay\Openpay
+ * Class WebSalesGateway.
  */
 class WebSalesGateway extends AbstractGateway
 {
@@ -26,7 +25,7 @@ class WebSalesGateway extends AbstractGateway
         return [
             'merchantId' => '',
             'workingKey' => '',
-            'testMode' => false,
+            'testMode'   => false,
         ];
     }
 

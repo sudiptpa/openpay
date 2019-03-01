@@ -5,8 +5,7 @@ namespace Omnipay\Openpay\Message;
 use SimpleXMLElement;
 
 /**
- * Class OrderRequest
- * @package Omnipay\Openpay\Message
+ * Class OrderRequest.
  */
 class OrderRequest extends AbstractRequest
 {
@@ -31,7 +30,7 @@ class OrderRequest extends AbstractRequest
     public function getRequestHeaders()
     {
         return [
-            'Content-Type' => 'application/xml',
+            'Content-Type'  => 'application/xml',
             'Cache-Control' => 'no-cache',
         ];
     }
@@ -52,6 +51,7 @@ class OrderRequest extends AbstractRequest
 
     /**
      * @param $data
+     *
      * @return \Omnipay\Openpay\Message\OrderResponse
      */
     public function sendData($data)
@@ -79,6 +79,6 @@ class OrderRequest extends AbstractRequest
             $endPoint = $this->testEndpoint;
         }
 
-        return $endPoint . $this->methodName;
+        return $endPoint.$this->methodName;
     }
 }

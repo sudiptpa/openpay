@@ -6,8 +6,7 @@ use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
- * Class OrderResponse
- * @package Omnipay\Openpay\Message
+ * Class OrderResponse.
  */
 class OrderResponse extends AbstractResponse
 {
@@ -32,7 +31,7 @@ class OrderResponse extends AbstractResponse
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isSuccessful()
     {
