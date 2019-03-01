@@ -24,8 +24,8 @@ class WebGateway extends AbstractGateway
     {
         return [
             'merchantId' => '',
-            'authToken' => '',
-            'testMode' => false,
+            'authToken'  => '',
+            'testMode'   => false,
         ];
     }
 

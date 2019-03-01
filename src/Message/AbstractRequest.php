@@ -3,8 +3,7 @@
 namespace Omnipay\Openpay\Message;
 
 /**
- * Class AbstractRequest
- * @package Omnipay\Openpay\Message
+ * Class AbstractRequest.
  */
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
