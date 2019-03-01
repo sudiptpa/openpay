@@ -5,8 +5,7 @@ namespace Omnipay\Openpay\Message;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
- * Class Response
- * @package Omnipay\Openpay\Message
+ * Class Response.
  */
 class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
 {
@@ -27,7 +26,7 @@ class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isRedirect()
     {
