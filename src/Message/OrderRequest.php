@@ -44,7 +44,7 @@ class OrderRequest extends AbstractRequest
         $xml = new SimpleXMLElement('<NewOnlineOrder/>');
 
         $xml->addChild('JamAuthToken', $this->getMerchantId());
-        $xml->addChild('AuthToken', $this->getWorkingKey());
+        $xml->addChild('AuthToken', $this->getAuthToken());
         $xml->addChild('PurchasePrice', $this->getPurchasePrice());
 
         return $xml;

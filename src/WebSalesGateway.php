@@ -25,7 +25,7 @@ class WebSalesGateway extends AbstractGateway
     {
         return [
             'merchantId' => '',
-            'workingKey' => '',
+            'authToken' => '',
             'testMode' => false,
         ];
     }
@@ -49,17 +49,17 @@ class WebSalesGateway extends AbstractGateway
     /**
      * @return string
      */
-    public function getWorkingKey()
+    public function getAuthToken()
     {
-        return $this->getParameter('workingKey');
+        return $this->getParameter('authToken');
     }
 
     /**
      * @param $value
      */
-    public function setWorkingKey($value)
+    public function setAuthToken($value)
     {
-        return $this->setParameter('workingKey', $value);
+        return $this->setParameter('authToken', $value);
     }
 
     /**
@@ -86,6 +86,16 @@ class WebSalesGateway extends AbstractGateway
     public function purchase(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\Openpay\Message\PurchaseRequest', $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     *
+     * @return \Omnipay\Openpay\Message\RefundRequest
+     */
+    public function refund(array $parameters = [])
+    {
+        return $this->createRequest('\Omnipay\Openpay\Message\RefundRequest', $parameters);
     }
 
     /**

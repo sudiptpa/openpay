@@ -37,17 +37,17 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * @return string
      */
-    public function getWorkingKey()
+    public function getAuthToken()
     {
-        return $this->getParameter('workingKey');
+        return $this->getParameter('authToken');
     }
 
     /**
      * @param $value
      */
-    public function setWorkingKey($value)
+    public function setAuthToken($value)
     {
-        return $this->setParameter('workingKey', $value);
+        return $this->setParameter('authToken', $value);
     }
 
     /**
