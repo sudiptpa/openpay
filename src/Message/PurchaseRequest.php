@@ -8,7 +8,7 @@ namespace Omnipay\Openpay\Message;
 class PurchaseRequest extends AbstractRequest
 {
     /**
-     * Prepare Data for API
+     * Prepare Data for API.
      * @return array
      */
     public function getData()
@@ -39,6 +39,7 @@ class PurchaseRequest extends AbstractRequest
 
     /**
      * @param $data
+     *
      * @return mixed
      */
     public function sendData($data)
