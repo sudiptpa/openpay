@@ -3,7 +3,7 @@
 namespace Omnipay\Openpay\Message;
 
 /**
- * Class RefundRequest
+ * Class RefundRequest.
  */
 class RefundRequest extends AbstractRequest
 {

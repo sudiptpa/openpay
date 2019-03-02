@@ -3,8 +3,7 @@
 namespace Omnipay\Openpay\Message;
 
 /**
- * Class PurchaseRequest
- * @package Omnipay\Openpay\Message
+ * Class PurchaseRequest.
  */
 class PurchaseRequest extends AbstractRequest
 {
