@@ -4,7 +4,7 @@ require __DIR__.'/vendor/autoload.php';
 
 use Omnipay\Omnipay;
 
-$gateway = Omnipay::create('Openpay_Web');
+$gateway = Omnipay::create('Openpay_Shared');
 
 // Replace xxxx with our own keys
 

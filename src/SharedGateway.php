@@ -1,21 +1,33 @@
 <?php
 
-namespace Omnipay\Openpay\Message;
+namespace Omnipay\Openpay;
+
+use Omnipay\Common\AbstractGateway;
 
 /**
- * Class AbstractRequest.
+ * Class SharedGateway
  */
-abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
+class SharedGateway extends AbstractGateway
 {
     /**
-     * @var string
+     * @return string
      */
-    protected $liveEndpoint = 'https://retailer.myopenpay.com.au/WebSalesLive/';
+    public function getName()
+    {
+        return 'Openpay';
+    }
 
     /**
-     * @var string
+     * @return array
      */
-    protected $testEndpoint = 'https://retailer.myopenpay.com.au/WebSalesTraining/';
+    public function getDefaultParameters()
+    {
+        return [
+            'merchantId' => '',
+            'authToken' => '',
+            'testMode' => false,
+        ];
+    }
 
     /**
      * @return string
@@ -227,5 +239,35 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function setEmail($value)
     {
         return $this->setParameter('email', $value);
+    }
+
+    /**
+     * @param array $parameters
+     *
+     * @return \Omnipay\Openpay\Message\PurchaseRequest
+     */
+    public function purchase(array $parameters = [])
+    {
+        return $this->createRequest('\Omnipay\Openpay\Message\PurchaseRequest', $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     *
+     * @return \Omnipay\Openpay\Message\RefundRequest
+     */
+    public function refund(array $parameters = [])
+    {
+        return $this->createRequest('\Omnipay\Openpay\Message\RefundRequest', $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     *
+     * @return \Omnipay\Openpay\Message\OrderRequest
+     */
+    public function order(array $parameters = [])
+    {
+        return $this->createRequest('\Omnipay\Openpay\Message\OrderRequest', $parameters);
     }
 }
