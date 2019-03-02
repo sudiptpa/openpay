@@ -8,16 +8,6 @@ namespace Omnipay\Openpay\Message;
 class PurchaseRequest extends AbstractRequest
 {
     /**
-     * @var string
-     */
-    protected $liveEndpoint = 'https://retailer.myopenpay.com.au/WebSalesLive/';
-
-    /**
-     * @var string
-     */
-    protected $testEndpoint = 'https://retailer.myopenpay.com.au/WebSalesTraining/';
-
-    /**
      * Prepare Data for API
      * @return array
      */
@@ -53,7 +43,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        $redirectUrl = $this->getEndpoint().'?'.http_build_query($data);
+        $redirectUrl = $this->getEndpoint() . '?' . http_build_query($data);
 
         return $this->response = new PurchaseResponse($this, $data, $redirectUrl);
     }
