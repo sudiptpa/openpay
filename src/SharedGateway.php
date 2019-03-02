@@ -5,7 +5,7 @@ namespace Omnipay\Openpay;
 use Omnipay\Common\AbstractGateway;
 
 /**
- * Class SharedGateway
+ * Class SharedGateway.
  */
 class SharedGateway extends AbstractGateway
 {
@@ -24,8 +24,8 @@ class SharedGateway extends AbstractGateway
     {
         return [
             'merchantId' => '',
-            'authToken' => '',
-            'testMode' => false,
+            'authToken'  => '',
+            'testMode'   => false,
         ];
     }
 

@@ -18,7 +18,8 @@ class PurchaseRequest extends AbstractRequest
     protected $testEndpoint = 'https://retailer.myopenpay.com.au/WebSalesTraining/';
 
     /**
-     * Prepare Data for API
+     * Prepare Data for API.
+     *
      * @return array
      */
     public function getData()
@@ -26,29 +27,30 @@ class PurchaseRequest extends AbstractRequest
         $this->validate('authToken', 'planID', 'purchasePrice');
 
         return [
-            'JamCallbackURL' => $this->getReturnUrl(),
-            'JamCancelURL' => $this->getCancelUrl(),
-            'JamFailURL' => $this->getCancelUrl(),
-            'JamAuthToken' => $this->getAuthToken(),
-            'JamPlanID' => $this->getPlanID(),
+            'JamCallbackURL'     => $this->getReturnUrl(),
+            'JamCancelURL'       => $this->getCancelUrl(),
+            'JamFailURL'         => $this->getCancelUrl(),
+            'JamAuthToken'       => $this->getAuthToken(),
+            'JamPlanID'          => $this->getPlanID(),
             'JamRetailerOrderNo' => $this->getRetailerOrderNo(),
-            'JamPrice' => $this->getPurchasePrice(),
-            'JamFirstName' => $this->getFirstName(),
-            'JamOtherNames' => $this->getMiddleName(),
-            'JamFamilyName' => $this->getLastName(),
-            'JamEmail' => $this->getEmail(),
-            'JamAddress1' => $this->getAddress1(),
-            'JamAddress2' => $this->getAddress2(),
-            'JamSuburb' => $this->getCity(),
-            'JamState' => $this->getState(),
-            'JamPostCode' => $this->getPostcode(),
-            'JamPhoneNumber' => $this->getPhone(),
-            'JamPurchasePrice' => $this->getPurchasePrice(),
+            'JamPrice'           => $this->getPurchasePrice(),
+            'JamFirstName'       => $this->getFirstName(),
+            'JamOtherNames'      => $this->getMiddleName(),
+            'JamFamilyName'      => $this->getLastName(),
+            'JamEmail'           => $this->getEmail(),
+            'JamAddress1'        => $this->getAddress1(),
+            'JamAddress2'        => $this->getAddress2(),
+            'JamSuburb'          => $this->getCity(),
+            'JamState'           => $this->getState(),
+            'JamPostCode'        => $this->getPostcode(),
+            'JamPhoneNumber'     => $this->getPhone(),
+            'JamPurchasePrice'   => $this->getPurchasePrice(),
         ];
     }
 
     /**
      * @param $data
+     *
      * @return mixed
      */
     public function sendData($data)
