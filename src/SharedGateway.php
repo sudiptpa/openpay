@@ -24,8 +24,8 @@ class SharedGateway extends AbstractGateway
     {
         return [
             'merchantId' => '',
-            'authToken'  => '',
-            'testMode'   => false,
+            'authToken' => '',
+            'testMode' => false,
         ];
     }
 
@@ -271,6 +271,38 @@ class SharedGateway extends AbstractGateway
     public function setRetailerOrderNo($value)
     {
         return $this->setParameter('retailerOrderNo', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getNewPurchasePrice()
+    {
+        return $this->getParameter('newPurchasePrice');
+    }
+
+    /**
+     * @param $value
+     */
+    public function setNewPurchasePrice($value)
+    {
+        return $this->setParameter('newPurchasePrice', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullRefund()
+    {
+        $this->getParameter('fullRefund');
+    }
+
+    /**
+     * @param $value
+     */
+    public function setFullRefund($value)
+    {
+        return $this->setParameter('fullRefund', $value);
     }
 
     /**
