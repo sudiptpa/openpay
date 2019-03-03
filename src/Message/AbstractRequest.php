@@ -292,4 +292,22 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         return $this->setParameter('fullRefund', $value);
     }
+
+    /**
+     * @return string
+     */
+    public function getFailedUrl()
+    {
+        return $this->getParameter('failedUrl');
+    }
+
+    /**
+     *
+     * @param string $value
+     * @return $this
+     */
+    public function setFailedUrl($value)
+    {
+        return $this->setParameter('failedUrl', $value);
+    }
 }
