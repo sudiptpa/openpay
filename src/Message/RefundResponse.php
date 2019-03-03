@@ -27,14 +27,4 @@ class RefundResponse extends AbstractResponse
     {
         return $this->getStatus() > 0;
     }
-
-    public function getMessage()
-    {
-        return (string) $this->data->reason;
-    }
-
-    public function getStatus()
-    {
-        return (string) $this->data->status;
-    }
 }

@@ -2,7 +2,6 @@
 
 namespace Omnipay\Openpay\Message;
 
-use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
@@ -46,15 +45,5 @@ class OrderStatusResponse extends AbstractResponse
     public function isSuccessful()
     {
         return in_array($this->getOrderStatus(), ['Approved']);
-    }
-
-    public function getMessage()
-    {
-        return (string) $this->data->reason;
-    }
-
-    public function getStatus()
-    {
-        return (string) $this->data->status;
     }
 }

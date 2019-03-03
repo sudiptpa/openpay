@@ -5,7 +5,7 @@ namespace Omnipay\Openpay\Message;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
- * Class Response.
+ * Class AbstractResponse.
  */
 class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
 {
@@ -16,7 +16,6 @@ class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
     public function __construct(RequestInterface $request, $data)
     {
         $this->request = $request;
-
         $this->data = $data;
     }
 
