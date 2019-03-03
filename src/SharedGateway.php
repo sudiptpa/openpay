@@ -334,4 +334,14 @@ class SharedGateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\Openpay\Message\OrderRequest', $parameters);
     }
+
+    /**
+     * @param array $parameters
+     *
+     * @return \Omnipay\Openpay\Message\OrderStatusRequest
+     */
+    public function orderStatus(array $parameters = [])
+    {
+        return $this->createRequest('\Omnipay\Openpay\Message\OrderStatusRequest', $parameters);
+    }
 }

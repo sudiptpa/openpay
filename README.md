@@ -6,8 +6,6 @@
 
 #### Complete Purchase (TBD)
 
-#### Check Plan
-
-#### Order Status
+#### Order Status (Done)
 
 #### Refund (Done)
