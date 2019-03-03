@@ -37,7 +37,7 @@ class PurchaseRequest extends AbstractRequest
     /**
      * @param $data
      *
-     * @return mixed
+     * @return \Omnipay\Openpay\Message\PurchaseResponse
      */
     public function sendData($data)
     {
