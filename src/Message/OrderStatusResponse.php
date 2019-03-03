@@ -34,6 +34,9 @@ class OrderStatusResponse extends AbstractResponse
         return (string) $this->data->PlanStatus;
     }
 
+    /**
+     * @return bool
+     */
     public function isPlanActive()
     {
         return in_array($this->getPlanStatus(), ['Active']);
@@ -42,7 +45,7 @@ class OrderStatusResponse extends AbstractResponse
     /**
      * @return bool
      */
-    public function isSuccessful()
+    public function isApproved()
     {
         return in_array($this->getOrderStatus(), ['Approved']);
     }
