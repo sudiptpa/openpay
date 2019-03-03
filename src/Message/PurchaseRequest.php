@@ -17,20 +17,20 @@ class PurchaseRequest extends AbstractRequest
         $this->validate('merchantId', 'planID', 'purchasePrice');
 
         return [
-            'JamCallbackURL' => $this->getReturnUrl(),
-            'JamCancelURL' => $this->getCancelUrl(),
-            'JamFailURL' => $this->getFailedUrl(),
-            'JamAuthToken' => $this->getMerchantId(),
-            'JamPlanID' => $this->getPlanID(),
+            'JamCallbackURL'     => $this->getReturnUrl(),
+            'JamCancelURL'       => $this->getCancelUrl(),
+            'JamFailURL'         => $this->getFailedUrl(),
+            'JamAuthToken'       => $this->getMerchantId(),
+            'JamPlanID'          => $this->getPlanID(),
             'JamRetailerOrderNo' => $this->getRetailerOrderNo(),
-            'JamPrice' => $this->getPurchasePrice(),
-            'JamFirstName' => $this->getFirstName(),
-            'JamFamilyName' => $this->getLastName(),
-            'JamEmail' => $this->getEmail(),
-            'JamAddress1' => $this->getAddress1(),
-            'JamSuburb' => $this->getCity(),
-            'JamState' => $this->getState(),
-            'JamPostcode' => $this->getPostcode(),
+            'JamPrice'           => $this->getPurchasePrice(),
+            'JamFirstName'       => $this->getFirstName(),
+            'JamFamilyName'      => $this->getLastName(),
+            'JamEmail'           => $this->getEmail(),
+            'JamAddress1'        => $this->getAddress1(),
+            'JamSuburb'          => $this->getCity(),
+            'JamState'           => $this->getState(),
+            'JamPostcode'        => $this->getPostcode(),
         ];
     }
 
@@ -41,7 +41,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        $redirectUrl = $this->getEndpoint() . '?' . http_build_query($data);
+        $redirectUrl = $this->getEndpoint().'?'.http_build_query($data);
 
         return $this->response = new PurchaseResponse($this, $data, $redirectUrl);
     }
