@@ -6,7 +6,9 @@
 processing library for PHP. This package implements Openpay support for Omnipay.
 
 [![StyleCI](https://github.styleci.io/repos/173117409/shield?branch=master&style=flat)](https://github.styleci.io/repos/173117409)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/sudiptpa/omnipay-openpay/master/LICENSE)
+[![Latest Stable Version](https://poser.pugx.org/sudiptpa/omnipay-openpay/v/stable)](https://packagist.org/packages/sudiptpa/omnipay-openpay)
+[![Total Downloads](https://poser.pugx.org/sudiptpa/omnipay-openpay/downloads)](https://packagist.org/packages/sudiptpa/omnipay-openpay)
+[![License](https://poser.pugx.org/sudiptpa/omnipay-openpay/license)](https://packagist.org/packages/sudiptpa/omnipay-openpay)
 
 ## Installation
 
