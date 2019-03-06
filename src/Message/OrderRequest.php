@@ -30,7 +30,7 @@ class OrderRequest extends AbstractRequest
     public function getRequestHeaders()
     {
         return [
-            'Content-Type'  => 'application/xml',
+            'Content-Type' => 'application/xml',
             'Cache-Control' => 'no-cache',
         ];
     }
@@ -56,16 +56,13 @@ class OrderRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        $httpResponse = $this->httpClient->request(
-            'POST',
+        $httpResponse = $this->httpClient->post(
             $this->getEndpoint(),
             $this->getRequestHeaders(),
             $data->asXML()
-        );
+        )->send();
 
-        $data = new SimpleXMLElement($httpResponse->getBody()->getContents());
-
-        return $this->response = new OrderResponse($this, $data);
+        return $this->response = new OrderResponse($this, $httpResponse->xml());
     }
 
     /**
@@ -79,6 +76,6 @@ class OrderRequest extends AbstractRequest
             $endPoint = $this->testEndpoint;
         }
 
-        return $endPoint.$this->methodName;
+        return $endPoint . $this->methodName;
     }
 }
