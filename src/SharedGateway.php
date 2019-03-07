@@ -24,8 +24,8 @@ class SharedGateway extends AbstractGateway
     {
         return [
             'merchantId' => '',
-            'authToken'  => '',
-            'testMode'   => false,
+            'authToken' => '',
+            'testMode' => false,
         ];
     }
 
@@ -321,6 +321,22 @@ class SharedGateway extends AbstractGateway
     public function setFailedUrl($value)
     {
         return $this->setParameter('failedUrl', $value);
+    }
+
+    /**
+     * @param $value
+     */
+    public function setSSLCertificatePath($value)
+    {
+        return $this->setParameter('sslCertificatePath', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getSSLCertificatePath()
+    {
+        return $this->getParameter('sslCertificatePath');
     }
 
     /**

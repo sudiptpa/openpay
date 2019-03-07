@@ -310,4 +310,20 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         return $this->setParameter('failedUrl', $value);
     }
+
+    /**
+     * @param $value
+     */
+    public function setSSLCertificatePath($value)
+    {
+        return $this->setParameter('sslCertificatePath', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getSSLCertificatePath()
+    {
+        return $this->getParameter('sslCertificatePath');
+    }
 }
