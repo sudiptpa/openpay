@@ -2,7 +2,6 @@
 
 namespace Omnipay\Openpay\Message;
 
-use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
@@ -25,6 +24,6 @@ class RefundResponse extends AbstractResponse
      */
     public function isSuccessful()
     {
-        return $this->getStatus() > 0;
+        return $this->getStatus() == 0;
     }
 }

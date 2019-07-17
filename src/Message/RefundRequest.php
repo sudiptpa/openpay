@@ -2,6 +2,8 @@
 
 namespace Omnipay\Openpay\Message;
 
+use SimpleXMLElement;
+
 /**
  * Class RefundRequest.
  */
