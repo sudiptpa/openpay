@@ -25,6 +25,6 @@ class RefundResponse extends AbstractResponse
      */
     public function isSuccessful()
     {
-        return $this->getStatus() > 0;
+        return $this->getStatus() == 0;
     }
 }
