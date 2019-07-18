@@ -29,6 +29,6 @@ class OrderResponse extends AbstractResponse
      */
     public function isSuccessful()
     {
-        return $this->getStatus() > 0 && $this->getPlanID();
+        return $this->getStatus() == 0 && $this->getPlanID();
     }
 }

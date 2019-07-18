@@ -292,6 +292,22 @@ class SharedGateway extends AbstractGateway
     /**
      * @return string
      */
+    public function getReducePriceBy()
+    {
+        return $this->getParameter('reducePriceBy');
+    }
+
+    /**
+     * @param $value
+     */
+    public function setReducePriceBy($value)
+    {
+        return $this->setParameter('reducePriceBy', $value);
+    }
+
+    /**
+     * @return string
+     */
     public function getFullRefund()
     {
         $this->getParameter('fullRefund');

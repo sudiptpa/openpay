@@ -280,6 +280,22 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * @return string
      */
+    public function getReducePriceBy()
+    {
+        return $this->getParameter('reducePriceBy');
+    }
+
+    /**
+     * @param $value
+     */
+    public function setReducePriceBy($value)
+    {
+        return $this->setParameter('reducePriceBy', $value);
+    }
+
+    /**
+     * @return string
+     */
     public function getFullRefund()
     {
         $this->getParameter('fullRefund');

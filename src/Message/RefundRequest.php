@@ -2,6 +2,8 @@
 
 namespace Omnipay\Openpay\Message;
 
+use SimpleXMLElement;
+
 /**
  * Class RefundRequest.
  */
@@ -28,7 +30,7 @@ class RefundRequest extends AbstractRequest
     public function getRequestHeaders()
     {
         return [
-            'Content-Type'  => 'application/xml',
+            'Content-Type' => 'application/xml',
             'Cache-Control' => 'no-cache',
         ];
     }
@@ -44,6 +46,7 @@ class RefundRequest extends AbstractRequest
         $xml->addChild('AuthToken', $this->getAuthToken());
         $xml->addChild('PlanID', $this->getPlanID());
         $xml->addChild('NewPurchasePrice', $this->getNewPurchasePrice());
+        $xml->addChild('ReducePriceBy', $this->getReducePriceBy());
         $xml->addChild('FullRefund', $this->getFullRefund()); // Eg: True, False
 
         return $xml;
@@ -79,6 +82,6 @@ class RefundRequest extends AbstractRequest
             $endPoint = $this->testEndpoint;
         }
 
-        return $endPoint.$this->methodName;
+        return $endPoint . $this->methodName;
     }
 }
