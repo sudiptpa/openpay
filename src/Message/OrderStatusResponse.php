@@ -19,19 +19,36 @@ class OrderStatusResponse extends AbstractResponse
         $this->data = $data;
     }
 
+    /**
+     * @return string
+     */
     public function getPlanID()
     {
         return (string) $this->data->PlanID;
     }
 
+    /**
+     * @return string
+     */
     public function getOrderStatus()
     {
         return (string) $this->data->OrderStatus;
     }
 
+    /**
+     * @return string
+     */
     public function getPlanStatus()
     {
         return (string) $this->data->PlanStatus;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPurchasePrice()
+    {
+        return $this->data->PurchasePrice;
     }
 
     /**
@@ -40,6 +57,22 @@ class OrderStatusResponse extends AbstractResponse
     public function isPlanActive()
     {
         return in_array($this->getPlanStatus(), ['Active']);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPlanRefunded()
+    {
+        return in_array($this->getPlanStatus(), ['Refunded']);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPlanFinished()
+    {
+        return in_array($this->getPlanStatus(), ['Finished']);
     }
 
     /**
