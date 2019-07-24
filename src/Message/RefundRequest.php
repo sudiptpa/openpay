@@ -30,7 +30,7 @@ class RefundRequest extends AbstractRequest
     public function getRequestHeaders()
     {
         return [
-            'Content-Type' => 'application/xml',
+            'Content-Type'  => 'application/xml',
             'Cache-Control' => 'no-cache',
         ];
     }
@@ -89,6 +89,6 @@ class RefundRequest extends AbstractRequest
             $endPoint = $this->testEndpoint;
         }
 
-        return $endPoint . $this->methodName;
+        return $endPoint.$this->methodName;
     }
 }
