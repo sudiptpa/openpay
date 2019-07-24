@@ -298,7 +298,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function getFullRefund()
     {
-        $this->getParameter('fullRefund');
+        return $this->getParameter('fullRefund');
     }
 
     /**

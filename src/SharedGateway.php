@@ -310,7 +310,7 @@ class SharedGateway extends AbstractGateway
      */
     public function getFullRefund()
     {
-        $this->getParameter('fullRefund');
+        return $this->getParameter('fullRefund');
     }
 
     /**
