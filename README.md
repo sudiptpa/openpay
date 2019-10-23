@@ -70,9 +70,15 @@ composer require league/omnipay sudiptpa/omnipay-openpay
         // success
     }
 ```
-
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.
+
+## Contributing
+
+Contributions are **welcome** and will be fully **credited**.
+
+Contributions can be made via a Pull Request on [Github](https://github.com/sudiptpa/openpay).
+
 
 ## Support
 
