@@ -9,6 +9,8 @@ class RestPingResponse extends AbstractRestResponse
 {
     public function isSuccessful()
     {
-        return $this->getStatusCode() == 200;
+        $statusCode = $this->getStatusCode();
+
+        return $statusCode >= 200 && $statusCode <= 399;
     }
 }

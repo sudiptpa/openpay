@@ -21,7 +21,7 @@ class RestPriceLimitRequest extends AbstractRestRequest
 
         $url = $this->getEndpoint();
 
-        $response = $this->httpClient->get($url, $headers, $data = [])->send();
+        $response = $this->httpClient->get($url, $headers, $data)->send();
 
         $data = json_decode($response->getBody(), true);
 
