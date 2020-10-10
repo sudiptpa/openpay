@@ -7,16 +7,6 @@ namespace Omnipay\Openpay\Message;
  */
 class RestRefundRequest extends AbstractRestRequest
 {
-    public function getOrderId()
-    {
-        return $this->getParameter('orderId');
-    }
-
-    public function setOrderId($value)
-    {
-        return $this->setParameter('orderId', $value);
-    }
-
     public function getFullRefund()
     {
         return $this->getParameter('fullRefund');

@@ -7,16 +7,6 @@ namespace Omnipay\Openpay\Message;
  */
 class RestCaptureRequest extends AbstractRestRequest
 {
-    public function getOrderId()
-    {
-        return $this->getParameter('orderId');
-    }
-
-    public function setOrderId($value)
-    {
-        return $this->setParameter('orderId', $value);
-    }
-
     public function getData()
     {
         $this->validate('orderId');

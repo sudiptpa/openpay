@@ -53,6 +53,16 @@ abstract class AbstractRestRequest extends \Omnipay\Common\Message\AbstractReque
         return $this->setParameter('apiToken', $value);
     }
 
+    public function getOrderId()
+    {
+        return $this->getParameter('orderId');
+    }
+
+    public function setOrderId($value)
+    {
+        return $this->setParameter('orderId', $value);
+    }
+
     /**
      * @return array
      */
