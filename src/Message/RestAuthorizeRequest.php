@@ -277,26 +277,26 @@ class RestAuthorizeRequest extends AbstractRequest
     public function getCustomerDetails()
     {
         return [
-            "firstName" => "string",
-            "otherNames" => "string",
-            "familyName" => "string",
-            "email" => "string",
-            "dateOfBirth" => "string",
-            "gender" => "string",
-            "phoneNumber" => "string",
-            "residentialAddress" => [
-                "line1" => "string",
-                "line2" => "string",
-                "suburb" => "string",
-                "state" => "string",
-                "postCode" => "string",
+            'firstName'          => 'string',
+            'otherNames'         => 'string',
+            'familyName'         => 'string',
+            'email'              => 'string',
+            'dateOfBirth'        => 'string',
+            'gender'             => 'string',
+            'phoneNumber'        => 'string',
+            'residentialAddress' => [
+                'line1'    => 'string',
+                'line2'    => 'string',
+                'suburb'   => 'string',
+                'state'    => 'string',
+                'postCode' => 'string',
             ],
-            "deliveryAddress" => [
-                "line1" => "string",
-                "line2" => "string",
-                "suburb" => "string",
-                "state" => "string",
-                "postCode" => "string",
+            'deliveryAddress' => [
+                'line1'    => 'string',
+                'line2'    => 'string',
+                'suburb'   => 'string',
+                'state'    => 'string',
+                'postCode' => 'string',
             ],
         ];
     }
@@ -382,7 +382,7 @@ class RestAuthorizeRequest extends AbstractRequest
 
     protected function getEndpoint()
     {
-        return parent::getEndpoint() . 'orders';
+        return parent::getEndpoint().'orders';
     }
 
     /**
