@@ -34,7 +34,7 @@ class RestCaptureRequest extends AbstractRestRequest
      */
     protected function getEndpoint()
     {
-        return parent::getEndpoint() . vsprintf('orders/%s/capture', [$this->getOrderId()]);
+        return parent::getEndpoint().vsprintf('orders/%s/capture', [$this->getOrderId()]);
     }
 
     /**

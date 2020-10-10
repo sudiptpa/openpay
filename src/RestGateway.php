@@ -23,7 +23,7 @@ class RestGateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return [
-            'apiKey' => '',
+            'apiKey'   => '',
             'apiToken' => '',
             'testMode' => true,
         ];

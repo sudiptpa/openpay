@@ -33,7 +33,7 @@ class RestPingRequest extends AbstractRestRequest
      */
     protected function getEndpoint()
     {
-        return parent::getEndpoint() . 'diagnostics/version';
+        return parent::getEndpoint().'diagnostics/version';
     }
 
     /**
