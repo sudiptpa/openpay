@@ -5,7 +5,7 @@ namespace Omnipay\Openpay;
 use Omnipay\Common\AbstractGateway;
 
 /**
- * Class RestGateway
+ * Class RestGateway.
  */
 class RestGateway extends AbstractGateway
 {
@@ -23,7 +23,7 @@ class RestGateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return [
-            'apiKey' => '',
+            'apiKey'   => '',
             'apiToken' => '',
             'testMode' => true,
         ];
@@ -39,6 +39,7 @@ class RestGateway extends AbstractGateway
 
     /**
      * @param $value
+     *
      * @return string
      */
     public function setApiKey($value)
@@ -56,6 +57,7 @@ class RestGateway extends AbstractGateway
 
     /**
      * @param $value
+     *
      * @return string
      */
     public function setApiToken($value)
