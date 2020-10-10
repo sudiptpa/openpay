@@ -66,6 +66,24 @@ class RestGateway extends AbstractGateway
     }
 
     /**
+     * @return string
+     */
+    public function getOrderId()
+    {
+        return $this->getParameter('orderId');
+    }
+
+    /**
+     * @param $value
+     *
+     * @return string
+     */
+    public function setOrderId($value)
+    {
+        return $this->setParameter('orderId', $value);
+    }
+
+    /**
      * @param array $parameters
      *
      * @return \Omnipay\Openpay\Message\RestPingRequest
@@ -90,29 +108,9 @@ class RestGateway extends AbstractGateway
      *
      * @return \Omnipay\Openpay\Message\RestAuthorizeRequest
      */
-    public function ping(array $parameters = [])
-    {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestPingRequest', $parameters);
-    }
-
-    /**
-     * @param array $parameters
-     *
-     * @return \Omnipay\Openpay\Message\RestAuthorizeRequest
-     */
     public function authorize(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\Openpay\Message\RestAuthorizeRequest', $parameters);
-    }
-
-    /**
-     * @param array $parameters
-     *
-     * @return \Omnipay\Openpay\Message\RestCompleteAuthorizeRequest
-     */
-    public function completeAuthorize(array $parameters = [])
-    {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestCompleteAuthorizeRequest', $parameters);
     }
 
     /**
@@ -123,6 +121,26 @@ class RestGateway extends AbstractGateway
     public function capture(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\Openpay\Message\RestCaptureRequest', $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     *
+     * @return \Omnipay\Openpay\Message\RestDispatchRequest
+     */
+    public function dispatch(array $parameters = [])
+    {
+        return $this->createRequest('\Omnipay\Openpay\Message\RestDispatchRequest', $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     *
+     * @return \Omnipay\Openpay\Message\RestVerifyOrderRequest
+     */
+    public function verifyOrder(array $parameters = [])
+    {
+        return $this->createRequest('\Omnipay\Openpay\Message\RestVerifyOrderRequest', $parameters);
     }
 
     /**

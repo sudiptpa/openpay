@@ -3,16 +3,17 @@
 namespace Omnipay\Openpay\Message;
 
 /**
- * Class RestPingRequest.
+ * Class RestCaptureRequest.
  */
-class RestPingRequest extends AbstractRestRequest
+class RestCaptureRequest extends AbstractRestRequest
 {
-    /**
-     * @return array
-     */
     public function getData()
     {
-        return [];
+        $this->validate('orderId');
+
+        return [
+            'orderId' => $this->getOrderId(),
+        ];
     }
 
     public function sendData($data = [])
@@ -21,7 +22,7 @@ class RestPingRequest extends AbstractRestRequest
 
         $url = $this->getEndpoint();
 
-        $response = $this->httpClient->get($url, $headers, $data)->send();
+        $response = $this->httpClient->post($url, $headers, json_encode($data))->send();
 
         $data = json_decode($response->getBody(), true);
 
@@ -33,7 +34,7 @@ class RestPingRequest extends AbstractRestRequest
      */
     protected function getEndpoint()
     {
-        return parent::getEndpoint().'diagnostics/version';
+        return parent::getEndpoint().vsprintf('orders/%s/capture', [$this->getOrderId()]);
     }
 
     /**
@@ -41,10 +42,10 @@ class RestPingRequest extends AbstractRestRequest
      * @param array $headers
      * @param $status
      *
-     * @return \Omnipay\Openpay\Message\RestPingResponse
+     * @return \Omnipay\Openpay\Message\RestCaptureResponse
      */
     protected function createResponse($data, $headers = [], $status = 404)
     {
-        return $this->response = new RestPingResponse($this, $data, $headers, $status);
+        return $this->response = new RestCaptureResponse($this, $data, $headers, $status);
     }
 }
