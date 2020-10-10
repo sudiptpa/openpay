@@ -44,7 +44,7 @@ class RestVerifyOrderRequest extends AbstractRestRequest
      */
     protected function getEndpoint()
     {
-        return parent::getEndpoint() . vsprintf('orders/%s', [$this->getOrderId()]);
+        return parent::getEndpoint().vsprintf('orders/%s', [$this->getOrderId()]);
     }
 
     /**

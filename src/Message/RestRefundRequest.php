@@ -42,7 +42,7 @@ class RestRefundRequest extends AbstractRestRequest
         $this->validate('fullRefund', 'reducePriceBy');
 
         return [
-            'fullRefund' => $this->getOrderId(),
+            'fullRefund'    => $this->getOrderId(),
             'reducePriceBy' => $this->getReducePriceBy() * 100,
         ];
     }
@@ -65,7 +65,7 @@ class RestRefundRequest extends AbstractRestRequest
      */
     protected function getEndpoint()
     {
-        return parent::getEndpoint() . vsprintf('orders/%s/refund', [$this->getOrderId()]);
+        return parent::getEndpoint().vsprintf('orders/%s/refund', [$this->getOrderId()]);
     }
 
     /**
