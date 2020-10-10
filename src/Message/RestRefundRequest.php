@@ -3,9 +3,9 @@
 namespace Omnipay\Openpay\Message;
 
 /**
- * Class RestCancelRequest.
+ * Class RestRefundRequest.
  */
-class RestCancelRequest extends AbstractRestRequest
+class RestRefundRequest extends AbstractRestRequest
 {
     public function getOrderId()
     {
@@ -17,12 +17,33 @@ class RestCancelRequest extends AbstractRestRequest
         return $this->setParameter('orderId', $value);
     }
 
+    public function getFullRefund()
+    {
+        return $this->getParameter('fullRefund');
+    }
+
+    public function setFullRefund($value)
+    {
+        return $this->setParameter('fullRefund', $value);
+    }
+
+    public function getReducePriceBy()
+    {
+        return $this->getParameter('reducePriceBy');
+    }
+
+    public function setReducePriceBy($value)
+    {
+        return $this->setParameter('reducePriceBy', $value);
+    }
+
     public function getData()
     {
-        $this->validate('orderId');
+        $this->validate('fullRefund', 'reducePriceBy');
 
         return [
-            'orderId' => $this->getOrderId(),
+            'fullRefund' => $this->getOrderId(),
+            'reducePriceBy' => $this->getReducePriceBy() * 100,
         ];
     }
 
@@ -44,7 +65,7 @@ class RestCancelRequest extends AbstractRestRequest
      */
     protected function getEndpoint()
     {
-        return parent::getEndpoint().vsprintf('orders/%s/cancel', [$this->getOrderId()]);
+        return parent::getEndpoint() . vsprintf('orders/%s/refund', [$this->getOrderId()]);
     }
 
     /**
@@ -52,10 +73,10 @@ class RestCancelRequest extends AbstractRestRequest
      * @param array $headers
      * @param $status
      *
-     * @return \Omnipay\Openpay\Message\RestCancelResponse
+     * @return \Omnipay\Openpay\Message\RestRefundResponse
      */
     protected function createResponse($data, $headers = [], $status = 404)
     {
-        return $this->response = new RestCancelResponse($this, $data, $headers, $status);
+        return $this->response = new RestRefundResponse($this, $data, $headers, $status);
     }
 }

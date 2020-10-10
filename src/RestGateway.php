@@ -66,24 +66,6 @@ class RestGateway extends AbstractGateway
     }
 
     /**
-     * @return string
-     */
-    public function getOrderId()
-    {
-        return $this->getParameter('orderId');
-    }
-
-    /**
-     * @param $value
-     *
-     * @return string
-     */
-    public function setOrderId($value)
-    {
-        return $this->setParameter('orderId', $value);
-    }
-
-    /**
      * @param array $parameters
      *
      * @return \Omnipay\Openpay\Message\RestPingRequest

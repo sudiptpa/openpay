@@ -7,6 +7,16 @@ namespace Omnipay\Openpay\Message;
  */
 class RestVerifyOrderRequest extends AbstractRestRequest
 {
+    public function getOrderId()
+    {
+        return $this->getParameter('orderId');
+    }
+
+    public function setOrderId($value)
+    {
+        return $this->setParameter('orderId', $value);
+    }
+
     public function getData()
     {
         $this->validate('orderId');
@@ -34,7 +44,7 @@ class RestVerifyOrderRequest extends AbstractRestRequest
      */
     protected function getEndpoint()
     {
-        return parent::getEndpoint().vsprintf('orders/%s', [$this->getOrderId()]);
+        return parent::getEndpoint() . vsprintf('orders/%s', [$this->getOrderId()]);
     }
 
     /**
