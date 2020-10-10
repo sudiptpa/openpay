@@ -32,7 +32,7 @@ class RestRefundRequest extends AbstractRestRequest
         $this->validate('fullRefund', 'reducePriceBy');
 
         return [
-            'fullRefund'    => $this->getOrderId(),
+            'fullRefund'    => $this->getFullRefund(),
             'reducePriceBy' => $this->getReducePriceBy() * 100,
         ];
     }
