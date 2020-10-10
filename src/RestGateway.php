@@ -98,6 +98,16 @@ class RestGateway extends AbstractGateway
     /**
      * @param array $parameters
      *
+     * @return \Omnipay\Openpay\Message\RestCancelRequest
+     */
+    public function void(array $parameters = [])
+    {
+        return $this->createRequest('\Omnipay\Openpay\Message\RestCancelRequest', $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     *
      * @return \Omnipay\Openpay\Message\RestRefundRequest
      */
     public function refund(array $parameters = [])
