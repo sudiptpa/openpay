@@ -33,7 +33,7 @@ class RestPriceLimitRequest extends AbstractRestRequest
      */
     protected function getEndpoint()
     {
-        return parent::getEndpoint() . 'orders/limits';
+        return parent::getEndpoint().'orders/limits';
     }
 
     /**
