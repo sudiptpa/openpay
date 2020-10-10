@@ -84,6 +84,6 @@ abstract class AbstractRestRequest extends \Omnipay\Common\Message\AbstractReque
      */
     protected function createResponse($data, $headers = [], $status = 404)
     {
-        return $this->response = new AbstractResponse($this, $data, $headers);
+        return $this->response = new AbstractResponse($this, $data, $headers, $status);
     }
 }

@@ -3,9 +3,9 @@
 namespace Omnipay\Openpay\Message;
 
 /**
- * Class RestPingRequest.
+ * Class RestPriceLimitRequest.
  */
-class RestPingRequest extends AbstractRestRequest
+class RestPriceLimitRequest extends AbstractRestRequest
 {
     /**
      * @return array
@@ -33,7 +33,7 @@ class RestPingRequest extends AbstractRestRequest
      */
     protected function getEndpoint()
     {
-        return parent::getEndpoint().'diagnostics/version';
+        return parent::getEndpoint().'orders/limits';
     }
 
     /**
@@ -41,10 +41,10 @@ class RestPingRequest extends AbstractRestRequest
      * @param array $headers
      * @param $status
      *
-     * @return \Omnipay\Openpay\Message\RestPingResponse
+     * @return \Omnipay\Openpay\Message\RestPriceLimitResponse
      */
     protected function createResponse($data, $headers = [], $status = 404)
     {
-        return $this->response = new RestPingResponse($this, $data, $headers, $status);
+        return $this->response = new RestPriceLimitResponse($this, $data, $headers, $status);
     }
 }
