@@ -44,7 +44,6 @@ class RestPingRequest extends AbstractRestRequest
      */
     protected function createResponse($data, $headers = [], $status = 404)
     {
-        var_dump($status, $headers, $data);die();
         return $this->response = new RestPingResponse($this, $data, $headers, $status);
     }
 }
