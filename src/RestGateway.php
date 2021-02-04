@@ -3,6 +3,7 @@
 namespace Omnipay\Openpay;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\Openpay\Message;
 
 /**
  * Class RestGateway.
@@ -68,11 +69,11 @@ class RestGateway extends AbstractGateway
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\Openpay\Message\RestPingRequest
+     * @return Message\RestPingRequest
      */
     public function ping(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestPingRequest', $parameters);
+        return $this->createRequest(Message\RestPingRequest::class, $parameters);
     }
 
     /**

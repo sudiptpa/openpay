@@ -21,9 +21,8 @@ class RestPingRequest extends AbstractRestRequest
 
         $url = $this->getEndpoint();
 
-        $response = $this->httpClient->get($url, $headers, $data)->send();
-
-        $data = json_decode($response->getBody(), true);
+        $response = $this->httpClient->request('GET', $url, $headers, null);
+        $data = json_decode($response->getBody()->getContents(), true);
 
         return $this->createResponse($data, $response->getHeaders(), $response->getStatusCode());
     }
@@ -45,6 +44,7 @@ class RestPingRequest extends AbstractRestRequest
      */
     protected function createResponse($data, $headers = [], $status = 404)
     {
+        var_dump($status, $headers, $data);die();
         return $this->response = new RestPingResponse($this, $data, $headers, $status);
     }
 }
