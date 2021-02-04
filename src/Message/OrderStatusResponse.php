@@ -36,6 +36,14 @@ class OrderStatusResponse extends AbstractResponse
     }
 
     /**
+     * @return int
+     */
+    public function getPurchasePrice()
+    {
+        return $this->data->PurchasePrice;
+    }
+
+    /**
      * @return string
      */
     public function getPlanStatus()

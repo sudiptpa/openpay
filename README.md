@@ -1,20 +1,17 @@
+
 # Omnipay: Openpay
 
 **Openpay driver for the Omnipay PHP payment processing library**
-
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP. This package implements Openpay support for Omnipay.
-
 [![StyleCI](https://github.styleci.io/repos/173117409/shield?branch=master&style=flat)](https://github.styleci.io/repos/173117409)
 [![Latest Stable Version](https://poser.pugx.org/sudiptpa/omnipay-openpay/v/stable)](https://packagist.org/packages/sudiptpa/omnipay-openpay)
 [![Total Downloads](https://poser.pugx.org/sudiptpa/omnipay-openpay/downloads)](https://packagist.org/packages/sudiptpa/omnipay-openpay)
 [![License](https://poser.pugx.org/sudiptpa/omnipay-openpay/license)](https://packagist.org/packages/sudiptpa/omnipay-openpay)
 
 ## Installation
-
 Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply add it
 to your `composer.json` file:
-
 ```json
 {
     "require": {
@@ -75,6 +72,12 @@ And run composer to update your dependencies:
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.
 
+## Contributing
+
+Contributions are **welcome** and will be fully **credited**.
+
+Contributions can be made via a Pull Request on [Github](https://github.com/sudiptpa/openpay).
+
 ## Support
 
 If you are having general issues with Omnipay, we suggest posting on
@@ -87,3 +90,15 @@ you can subscribe to.
 
 If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/sudiptpa/openpay/issues),
 or better yet, fork the library and submit a pull request.
+
+## To Do
+
+#### Order Plan (Done)
+
+#### Purchase (In Progress)
+
+#### Complete Purchase (TBD)
+
+#### Order Status (Done)
+
+#### Refund (Done)

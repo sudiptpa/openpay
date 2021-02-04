@@ -45,7 +45,15 @@ class RefundRequest extends AbstractRequest
         $xml->addChild('JamAuthToken', $this->getMerchantId());
         $xml->addChild('AuthToken', $this->getAuthToken());
         $xml->addChild('PlanID', $this->getPlanID());
-        $xml->addChild('NewPurchasePrice', $this->getNewPurchasePrice());
+
+        if ($this->getNewPurchasePrice()) {
+            $xml->addChild('NewPurchasePrice', $this->getNewPurchasePrice());
+        }
+
+        if ($this->getReducePriceBy()) {
+            $xml->addChild('ReducePriceBy', $this->getReducePriceBy());
+        }
+
         $xml->addChild('FullRefund', $this->getFullRefund()); // Eg: True, False
 
         return $xml;
