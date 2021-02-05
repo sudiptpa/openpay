@@ -4,6 +4,7 @@ namespace Omnipay\Openpay;
 
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Openpay\Message;
+use Omnipay\Openpay\Message\RestAuthorizeRequest;
 
 /**
  * Class RestGateway.
@@ -86,15 +87,15 @@ class RestGateway extends AbstractGateway
         return $this->createRequest(Message\RestPriceLimitRequest::class, $parameters);
     }
 
-//    /**
-//     * @param array $parameters
-//     *
-//     * @return \Omnipay\Openpay\Message\RestAuthorizeRequest
-//     */
-//    public function authorize(array $parameters = [])
-//    {
-//        return $this->createRequest('\Omnipay\Openpay\Message\RestAuthorizeRequest', $parameters);
-//    }
+    /**
+     * @param array $parameters
+     *
+     * @return RestAuthorizeRequest
+     */
+    public function authorize(array $parameters = [])
+    {
+        return $this->createRequest(RestAuthorizeRequest::class, $parameters);
+    }
 
     /**
      * @param array $parameters
@@ -114,16 +115,6 @@ class RestGateway extends AbstractGateway
     public function dispatch(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\Openpay\Message\RestDispatchRequest', $parameters);
-    }
-
-    /**
-     * @param array $parameters
-     *
-     * @return \Omnipay\Openpay\Message\RestVerifyOrderRequest
-     */
-    public function verifyOrder(array $parameters = [])
-    {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestVerifyOrderRequest', $parameters);
     }
 
     /**

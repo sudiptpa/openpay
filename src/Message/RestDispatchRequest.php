@@ -7,6 +7,11 @@ namespace Omnipay\Openpay\Message;
  */
 class RestDispatchRequest extends AbstractRestRequest
 {
+    public function getHttpMethod()
+    {
+        return 'POST';
+    }
+
     public function getData()
     {
         $this->validate('orderId');
@@ -35,17 +40,5 @@ class RestDispatchRequest extends AbstractRestRequest
     protected function getEndpoint()
     {
         return parent::getEndpoint().vsprintf('orders/%s/dispatch', [$this->getOrderId()]);
-    }
-
-    /**
-     * @param $data
-     * @param array $headers
-     * @param $status
-     *
-     * @return \Omnipay\Openpay\Message\RestDispatchResponse
-     */
-    protected function createResponse($data, $headers = [], $status = 404)
-    {
-        return $this->response = new RestDispatchResponse($this, $data, $headers, $status);
     }
 }

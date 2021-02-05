@@ -2,6 +2,8 @@
 
 namespace Omnipay\Openpay\Message;
 
+use GuzzleHttp\Psr7\Message;
+
 /**
  * Class AbstractRestRequest.
  */
@@ -69,11 +71,11 @@ abstract class AbstractRestRequest extends \Omnipay\Common\Message\AbstractReque
     public function getHeaders()
     {
         return [
-            'Content-Type'  => 'application/json',
-            'Accept'        => 'application/json',
-            'Authorization' => 'Basic '.base64_encode("{$this->getApiKey()}:{$this->getApiToken()}"),
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+            'Authorization' => 'Basic ' . base64_encode("{$this->getApiKey()}:{$this->getApiToken()}"),
             'Cache-Control' => 'no-cache',
-            'Connection'    => 'close',
+            'Connection' => 'close',
         ];
     }
 
@@ -94,6 +96,41 @@ abstract class AbstractRestRequest extends \Omnipay\Common\Message\AbstractReque
      */
     protected function createResponse($data, $headers = [], $status = 404)
     {
-        return $this->response = new AbstractResponse($this, $data, $headers, $status);
+        $class = str_replace('Request', 'Response', get_class($this));
+        return $this->response = new $class($this, $data, $headers, $status);
+    }
+
+    /** @return string */
+    abstract function getHttpMethod();
+
+    public function getData()
+    {
+        return [];
+    }
+
+
+    public function sendData($data = [])
+    {
+        $trace = false;
+        if ($trace) {
+            var_dump(json_encode($this->getData(), JSON_PRETTY_PRINT));
+        }
+        $response = $this->httpClient->request(
+            $this->getHttpMethod(),
+            $this->getEndpoint(),
+            $this->getHeaders(),
+            $this->getHttpMethod() === 'POST' ? json_encode($this->getData()) : null
+        );
+
+        $body  =$response->getBody()->getContents();
+        $data = json_decode($body, true);
+
+        if ($trace) {
+            echo "\n";
+            echo Message::toString($response);
+            echo "\n";
+        }
+
+        return $this->createResponse($data, $response->getHeaders(), $response->getStatusCode());
     }
 }

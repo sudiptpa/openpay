@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\ParameterBag;
  *
  * @see ItemInterface
  */
-class RestItem extends \Omnipay\Common\Item implements RestItemInterface
+class RestItem extends \Omnipay\Common\Item implements \Omnipay\Common\ItemInterface, RestItemInterface
 {
 
     public function getItemGroup()
@@ -22,7 +22,7 @@ class RestItem extends \Omnipay\Common\Item implements RestItemInterface
 
     public function setItemGroup($v)
     {
-        $this->parameters->set('itemGroup',$v);
+        $this->parameters->set('itemGroup', $v);
     }
 
     public function getItemCode()
@@ -32,7 +32,7 @@ class RestItem extends \Omnipay\Common\Item implements RestItemInterface
 
     public function setItemCode($v)
     {
-        $this->parameters->set('itemCode',$v);
+        $this->parameters->set('itemCode', $v);
     }
 
     public function getItemGroupCode()
@@ -42,7 +42,7 @@ class RestItem extends \Omnipay\Common\Item implements RestItemInterface
 
     public function setItemGroupCode($v)
     {
-        $this->parameters->set('itemGroupCod',$v);
+        $this->parameters->set('itemGroupCod', $v);
     }
 
     public function getTotalPrice()
@@ -52,6 +52,6 @@ class RestItem extends \Omnipay\Common\Item implements RestItemInterface
 
     public function setTotalPrice($v)
     {
-        $this->parameters->set('totalPrice',$v);
+        $this->parameters->set('totalPrice', $v);
     }
 }

@@ -7,24 +7,9 @@ namespace Omnipay\Openpay\Message;
  */
 class RestPingRequest extends AbstractRestRequest
 {
-    /**
-     * @return array
-     */
-    public function getData()
+    function getHttpMethod()
     {
-        return [];
-    }
-
-    public function sendData($data = [])
-    {
-        $headers = $this->getHeaders();
-
-        $url = $this->getEndpoint();
-
-        $response = $this->httpClient->request('GET', $url, $headers, null);
-        $data = json_decode($response->getBody()->getContents(), true);
-
-        return $this->createResponse($data, $response->getHeaders(), $response->getStatusCode());
+        return 'GET';
     }
 
     /**
@@ -33,17 +18,5 @@ class RestPingRequest extends AbstractRestRequest
     protected function getEndpoint()
     {
         return parent::getEndpoint().'diagnostics/version';
-    }
-
-    /**
-     * @param $data
-     * @param array $headers
-     * @param $status
-     *
-     * @return \Omnipay\Openpay\Message\RestPingResponse
-     */
-    protected function createResponse($data, $headers = [], $status = 404)
-    {
-        return $this->response = new RestPingResponse($this, $data, $headers, $status);
     }
 }

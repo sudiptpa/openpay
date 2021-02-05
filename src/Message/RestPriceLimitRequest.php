@@ -7,24 +7,9 @@ namespace Omnipay\Openpay\Message;
  */
 class RestPriceLimitRequest extends AbstractRestRequest
 {
-    /**
-     * @return array
-     */
-    public function getData()
+    function getHttpMethod()
     {
-        return [];
-    }
-
-    public function sendData($data = [])
-    {
-        $headers = $this->getHeaders();
-
-        $url = $this->getEndpoint();
-
-        $response = $this->httpClient->request('GET',$url, $headers,null);
-        $data = json_decode($response->getBody()->getContents(), true);
-
-        return $this->createResponse($data, $response->getHeaders(), $response->getStatusCode());
+        return 'GET';
     }
 
     /**
@@ -32,18 +17,6 @@ class RestPriceLimitRequest extends AbstractRestRequest
      */
     protected function getEndpoint()
     {
-        return parent::getEndpoint().'orders/limits';
-    }
-
-    /**
-     * @param $data
-     * @param array $headers
-     * @param $status
-     *
-     * @return \Omnipay\Openpay\Message\RestPriceLimitResponse
-     */
-    protected function createResponse($data, $headers = [], $status = 404)
-    {
-        return $this->response = new RestPriceLimitResponse($this, $data, $headers, $status);
+        return parent::getEndpoint() . 'orders/limits';
     }
 }

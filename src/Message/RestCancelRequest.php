@@ -7,6 +7,11 @@ namespace Omnipay\Openpay\Message;
  */
 class RestCancelRequest extends AbstractRestRequest
 {
+    public function getHttpMethod()
+    {
+        return 'POST';
+    }
+
     public function getData()
     {
         $this->validate('orderId');
@@ -35,17 +40,5 @@ class RestCancelRequest extends AbstractRestRequest
     protected function getEndpoint()
     {
         return parent::getEndpoint().vsprintf('orders/%s/cancel', [$this->getOrderId()]);
-    }
-
-    /**
-     * @param $data
-     * @param array $headers
-     * @param $status
-     *
-     * @return \Omnipay\Openpay\Message\RestCancelResponse
-     */
-    protected function createResponse($data, $headers = [], $status = 404)
-    {
-        return $this->response = new RestCancelResponse($this, $data, $headers, $status);
     }
 }

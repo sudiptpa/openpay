@@ -42,5 +42,4 @@ class RestPingResponse extends AbstractRestResponse
     {
         return isset($this->data['environmentName']) ? (string)$this->data['environmentName'] : null;
     }
-
 }

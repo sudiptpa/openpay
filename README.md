@@ -25,7 +25,7 @@ And run composer to update your dependencies:
     $ curl -s http://getcomposer.org/installer | php
     $ php composer.phar update
 
-## Basic Usage
+## Basic Usage (XML Api)
 
 ```php
     use Omnipay\Omnipay;
@@ -69,6 +69,92 @@ And run composer to update your dependencies:
     }
 ```
 
+### Basic Usage (Rest API)
+
+```php
+    use Omnipay\Omnipay;
+    use Omnipay\Openpay\RestItem;
+
+    $gateway = Omnipay::create('Openpay_Rest');
+
+    $gateway->setApiKey('xxxx'); // API Username
+    $gateway->setApiToken('xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxx'); //API Password
+
+    $gateway->setTestMode(true);
+
+    try {
+        $card = [ 
+            'firstName' => 'Example',
+            'lastName' => 'User',
+            'email' => 'customer@gmail.com',
+            'phone' => '0400123123',
+            'billingAddress1' => '123 Billing St',
+            'billingAddress2' => 'Billsville',
+            'billingCity' => 'Billstown',
+            'billingPostcode' => '3133',
+            'billingState' => 'VIC',
+            'billingCountry' => 'AU',
+            'billingPhone' => '0400 123 123',
+            'shippingAddress1' => '123 Shipping St',
+            'shippingAddress2' => 'Shipsville',
+            'shippingCity' => 'Shipstown',
+            'shippingPostcode' => '3000',
+            'shippingState' => 'VIC',
+            'shippingCountry' => 'AU',
+            'shippingPhone' => '03 8500 0000'
+        ];
+  
+        /** @var \Omnipay\Openpay\Message\RestAuthorizeResponse $authResp */
+        $authResp = $gateway->authorize([
+           'amount' => '200.00',
+            'card' => $card,
+            'returnUrl' => 'https://example.com/return',
+            'cancelUrl' => 'https://example.com/cancel',
+            'failedUrl' => 'https://example.com/fail',
+            'retailerOrderNo' => 'abc123',
+            'items' => [
+                new RestItem([
+                    'name' => 'Item 1',
+                    'itemCode' => '12345',
+                    'quantity' => 3,
+                    'price' => '30.00',
+                    'totalPrice' => '90.00'
+                ]),
+                new RestItem([
+                    'name' => 'Shipping',
+                    'itemCode' => '-',
+                    'quantity' => 1,
+                    'price' => '110.00',
+                    'totalPrice' => '110.00'
+                ])
+            ],
+        ])->send();
+        
+        if($authResp->isSuccessful()) {
+          saveOrderId($authResp->getOrderId());
+          echo $authResp->getHiddenForm();
+          echo '<script>document.forms[0].submit()</script>';
+        } else {
+          reportPaymentFailure('Open pay did not accept your order',$authResp->getData());
+        }
+        
+        
+        // Capture after user completed plan registration via return URL
+        
+        /** @var \Omnipay\Openpay\Message\RestCaptureResponse $capResp */
+        $capResp = $gateway->capture([
+            'orderId' => loadOrderId(),
+        ])->send();
+
+        if($capResp->isSuccessful()) {
+            markPaymentComplete($capResp->getOrderId(), $capResp->getPurchasePrice());
+        }
+    } catch (Exception $e) {
+        return $e->getMessage();
+    }
+
+```
+
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.
 
@@ -90,15 +176,3 @@ you can subscribe to.
 
 If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/sudiptpa/openpay/issues),
 or better yet, fork the library and submit a pull request.
-
-## To Do
-
-#### Order Plan (Done)
-
-#### Purchase (In Progress)
-
-#### Complete Purchase (TBD)
-
-#### Order Status (Done)
-
-#### Refund (Done)

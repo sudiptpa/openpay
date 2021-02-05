@@ -3,12 +3,19 @@
 namespace Omnipay\Openpay\Message;
 
 use Omnipay\Openpay\ItemBag;
+use Omnipay\Openpay\ItemInterface;
+use Omnipay\Openpay\RestItemInterface;
 
 /**
  * Class RestAuthorizeRequest.
  */
-class RestAuthorizeRequest extends AbstractRequest
+class RestAuthorizeRequest extends AbstractRestRequest
 {
+    public function getHttpMethod()
+    {
+        return 'POST';
+    }
+
     public function getOrigin()
     {
         return $this->getParameter('origin');
@@ -28,100 +35,14 @@ class RestAuthorizeRequest extends AbstractRequest
     {
         return $this->setParameter('failedUrl', $value);
     }
-
-    public function getPlanCreationType()
+    public function getPickup()
     {
-        return $this->getParameter('planCreationType');
+        return (bool) $this->getParameter('pickup');
     }
 
-    public function setPlanCreationType($value)
+    public function setPickup($value)
     {
-        return $this->setParameter('planCreationType', $value);
-    }
-
-    public function getChargeBackCount()
-    {
-        return $this->getParameter('chargeBackCount');
-    }
-
-    public function setChargeBackCount($value)
-    {
-        return $this->setParameter('chargeBackCount', $value);
-    }
-
-    public function getCustomerQuality()
-    {
-        return $this->getParameter('customerQuality');
-    }
-
-    public function setCustomerQuality($value)
-    {
-        return $this->setParameter('customerQuality', $value);
-    }
-
-    public function getDeliveryDate()
-    {
-        return $this->getParameter('deliveryDate');
-    }
-
-    public function getEmployeeCode()
-    {
-        return $this->getParameter('employeeCode');
-    }
-
-    public function setEmployeeCode($value)
-    {
-        return $this->setParameter('employeeCode', $value);
-    }
-
-    public function getCustomerId()
-    {
-        return $this->getParameter('customerId');
-    }
-
-    public function setCustomerId($value)
-    {
-        return $this->setParameter('customerId', $value);
-    }
-
-    public function getFirstName()
-    {
-        return $this->getParameter('firstName');
-    }
-
-    public function setFirstName($value)
-    {
-        return $this->setParameter('firstName', $value);
-    }
-
-    public function getOtherNames()
-    {
-        return $this->getParameter('otherNames');
-    }
-
-    public function setOtherNames($value)
-    {
-        return $this->setParameter('otherNames', $value);
-    }
-
-    public function getFamilyName()
-    {
-        return $this->getParameter('familyName');
-    }
-
-    public function setFamilyName($value)
-    {
-        return $this->setParameter('familyName', $value);
-    }
-
-    public function getEmail()
-    {
-        return $this->getParameter('email');
-    }
-
-    public function setEmail($value)
-    {
-        return $this->setParameter('email', $value);
+        return $this->setParameter('pickup', (bool) $value);
     }
 
     public function getDateOfBirth()
@@ -134,100 +55,40 @@ class RestAuthorizeRequest extends AbstractRequest
         return $this->setParameter('dateOfBirth', $value);
     }
 
-    public function getGender()
+
+    public function getDeliveryAddress()
     {
-        return $this->getParameter('gender');
+        $c = $this->getCard();
+        return [
+            'line1' => $c->getShippingAddress1(),
+            'line2' => $c->getShippingAddress2(),
+            'suburb' => $c->getShippingCity(),
+            'state' => $c->getShippingState(),
+            'postCode' => $c->getShippingPostcode(),
+        ];
     }
 
-    public function setGender($value)
+
+    public function getResidentialAddress()
     {
-        return $this->setParameter('gender', $value);
+        $c = $this->getCard();
+        if (!$c->getBillingAddress1()) {
+            return null;
+        }
+        return [
+            'line1' => $c->getBillingAddress1(),
+            'line2' => $c->getBillingAddress2(),
+            'suburb' => $c->getBillingCity(),
+            'state' => $c->getBillingState(),
+            'postCode' => $c->getBillingPostcode(),
+        ];
     }
 
-    public function getResidentialAddress1()
-    {
-        return $this->getParameter('residentialAddress1');
-    }
-
-    public function setResidentialAddress1($value)
-    {
-        return $this->setParameter('residentialAddress1', $value);
-    }
-
-    public function getResidentialAddress2()
-    {
-        return $this->getParameter('residentialAddress2');
-    }
-
-    public function setResidentialAddress2($value)
-    {
-        return $this->setParameter('residentialAddress2', $value);
-    }
-
-    public function getResidentialSuburb()
-    {
-        return $this->getParameter('residentialSuburb');
-    }
-
-    public function setResidentialState($value)
-    {
-        return $this->setParameter('residentialState', $value);
-    }
-
-    public function getResidentialPostCode()
-    {
-        return $this->getParameter('residentialPostCode');
-    }
-
-    public function setResidentialPostCode($value)
-    {
-        return $this->setParameter('residentialPostCode', $value);
-    }
-
-    public function getDeliveryAddress1()
-    {
-        return $this->getParameter('deliveryAddress1');
-    }
-
-    public function setDeliveryAddress1($value)
-    {
-        return $this->setParameter('deliveryAddress1', $value);
-    }
-
-    public function getDeliveryAddress2()
-    {
-        return $this->getParameter('deliveryAddress2');
-    }
-
-    public function setDeliveryAddress2($value)
-    {
-        return $this->setParameter('deliveryAddress2', $value);
-    }
-
-    public function getDeliverySuburb()
-    {
-        return $this->getParameter('deliverySuburb');
-    }
-
-    public function setDeliveryState($value)
-    {
-        return $this->setParameter('deliveryState', $value);
-    }
-
-    public function getDeliveryPostCode()
-    {
-        return $this->getParameter('deliveryPostCode');
-    }
-
-    public function setDeliveryPostCode($value)
-    {
-        return $this->setParameter('deliveryPostCode', $value);
-    }
 
     public function setItems($items)
     {
-        if ($items && !$items instanceof ItemBag) {
-            $items = new ItemBag($items);
+        if ($items && !$items instanceof \Omnipay\Common\ItemBag) {
+            $items = new \Omnipay\Common\ItemBag($items);
         }
 
         return $this->setParameter('items', $items);
@@ -243,16 +104,6 @@ class RestAuthorizeRequest extends AbstractRequest
         return $this->setParameter('goodsDescription', $value);
     }
 
-    public function getPurchasePrice()
-    {
-        return $this->getParameter('purchasePrice');
-    }
-
-    public function setPurchasePrice($value)
-    {
-        return $this->setParameter('purchasePrice', $value);
-    }
-
     public function getRetailerOrderNo()
     {
         return $this->getParameter('retailerOrderNo');
@@ -265,135 +116,53 @@ class RestAuthorizeRequest extends AbstractRequest
 
     public function getData()
     {
-        $this->validate('merchantId', 'planID', 'purchasePrice');
+        $this->validate('card', 'returnUrl', 'cancelUrl', 'failedUrl', 'amount');
 
         return [
             'customerJourney' => [
-                'origin' => $this->getOrigin(),
+                'origin' => 'Online',
+                'online' => [
+                    'callbackUrl' => $this->getReturnUrl(),
+                    'cancelUrl' => $this->getCancelUrl(),
+                    'failUrl' => $this->getFailedUrl(),
+                    'planCreationType' => 'pending',
+                    'customerDetails' => [
+                        'firstName' => $this->getCard()->getFirstName(),
+                        'familyName' => $this->getCard()->getLastName(),
+                        'email' => $this->getCard()->getEmail(),
+                        'dateOfBirth' => $this->getDateOfBirth(),
+                        'gender' => $this->getCard()->getGender(),
+                        'phoneNumber' => $this->getCard()->getPhone(),
+                        'deliveryAddress' => $this->getDeliveryAddress(),
+                        'residentialAddress' => $this->getResidentialAddress(),
+                    ],
+                    'deliveryMethod' => $this->getPickup() ? 'Pickup' : 'Delivery',
+                ]
             ],
+            'purchasePrice' => self::dollarsToCents($this->getAmount()),
+            'retailerOrderNo' => $this->getRetailerOrderNo(),
+            'goodsDescription' => $this->getGoodsDescription(),
+            'cart' => array_map(function (RestItemInterface $item) {
+                return [
+                    'itemName' => $item->getName(),
+                    'itemGroup' => $item->getItemGroup(),
+                    'itemCode' => $item->getItemCode(),
+                    'itemGroupCode' => $item->getItemGroupCode(),
+                    'itemRetailUnitPrice' => self::dollarsToCents($item->getPrice()),
+                    'itemQty' => $item->getQuantity(),
+                    'itemRetailCharge' => self::dollarsToCents($item->getTotalPrice()),
+                ];
+            }, $this->getItems()? $this->getItems()->all():[])
         ];
     }
 
-    public function getCustomerDetails()
+    static function dollarsToCents($dollars)
     {
-        return [
-            'firstName'          => 'string',
-            'otherNames'         => 'string',
-            'familyName'         => 'string',
-            'email'              => 'string',
-            'dateOfBirth'        => 'string',
-            'gender'             => 'string',
-            'phoneNumber'        => 'string',
-            'residentialAddress' => [
-                'line1'    => 'string',
-                'line2'    => 'string',
-                'suburb'   => 'string',
-                'state'    => 'string',
-                'postCode' => 'string',
-            ],
-            'deliveryAddress' => [
-                'line1'    => 'string',
-                'line2'    => 'string',
-                'suburb'   => 'string',
-                'state'    => 'string',
-                'postCode' => 'string',
-            ],
-        ];
-    }
-
-    public function getCustomerJourney()
-    {
-        // {
-        //   "customerJourney": {
-        //     "origin": "Online",
-        //     "online": {
-        //       "callbackUrl": "string",
-        //       "cancelUrl": "string",
-        //       "failUrl": "string",
-        //       "planCreationType": "string",
-        //       "chargeBackCount": 0,
-        //       "customerQuality": 0,
-        //       "customerDetails": {
-        //         "firstName": "string",
-        //         "otherNames": "string",
-        //         "familyName": "string",
-        //         "email": "string",
-        //         "dateOfBirth": "string",
-        //         "gender": "string",
-        //         "phoneNumber": "string",
-        //         "residentialAddress": {
-        //           "line1": "string",
-        //           "line2": "string",
-        //           "suburb": "string",
-        //           "state": "string",
-        //           "postCode": "string"
-        //         },
-        //         "deliveryAddress": {
-        //           "line1": "string",
-        //           "line2": "string",
-        //           "suburb": "string",
-        //           "state": "string",
-        //           "postCode": "string"
-        //         }
-        //       },
-        //       "deliveryDate": "string"
-        //     },
-        //     "posApp": {
-        //       "employeeCode": "string",
-        //       "customerId": "string"
-        //     },
-        //     "posWeb": {
-        //       "planCreationType": "string",
-        //       "employeeCode": "string",
-        //       "callbackUrl": "string",
-        //       "cancelUrl": "string",
-        //       "failUrl": "string"
-        //     }
-        //   },
-        //   "goodsDescription": "string",
-        //   "purchasePrice": 0,
-        //   "retailerOrderNo": "string",
-        //   "cart": [
-        //     {
-        //       "itemName": "string",
-        //       "itemGroup": "string",
-        //       "itemCode": "string",
-        //       "itemGroupCode": "string",
-        //       "itemRetailUnitPrice": 0,
-        //       "itemQty": "string",
-        //       "itemRetailCharge": 0
-        //     }
-        //   ]
-        // }
-    }
-
-    public function sendData($data = [])
-    {
-        $headers = $this->getHeaders();
-
-        $url = $this->getEndpoint();
-
-        $response = $this->httpClient->get($url, $headers, $data = [])->send();
-
-        $data = json_decode($response->getBody(), true);
-
-        return $this->createResponse($data, $response->getHeaders(), $response->getStatusCode());
+        return (int) bcmul('100', $dollars, 0);
     }
 
     protected function getEndpoint()
     {
-        return parent::getEndpoint().'orders';
-    }
-
-    /**
-     * @param $data
-     * @param array $headers
-     * @param $status
-     *
-     * @return \Omnipay\Openpay\Message\RestAuthorizeResponse
-     */
-    protected function createResponse($data, $headers = [], $status = 404)
-    {
-        return $this->response = new RestAuthorizeResponse($this, $data, $headers, $status);
+        return parent::getEndpoint() . 'orders';
     }
 }
