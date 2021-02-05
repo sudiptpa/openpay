@@ -83,18 +83,18 @@ class RestGateway extends AbstractGateway
      */
     public function priceLimit(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestPriceLimitRequest', $parameters);
+        return $this->createRequest(Message\RestPriceLimitRequest::class, $parameters);
     }
 
-    /**
-     * @param array $parameters
-     *
-     * @return \Omnipay\Openpay\Message\RestAuthorizeRequest
-     */
-    public function authorize(array $parameters = [])
-    {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestAuthorizeRequest', $parameters);
-    }
+//    /**
+//     * @param array $parameters
+//     *
+//     * @return \Omnipay\Openpay\Message\RestAuthorizeRequest
+//     */
+//    public function authorize(array $parameters = [])
+//    {
+//        return $this->createRequest('\Omnipay\Openpay\Message\RestAuthorizeRequest', $parameters);
+//    }
 
     /**
      * @param array $parameters
