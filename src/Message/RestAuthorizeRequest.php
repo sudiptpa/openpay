@@ -2,8 +2,6 @@
 
 namespace Omnipay\Openpay\Message;
 
-use Omnipay\Openpay\ItemBag;
-use Omnipay\Openpay\ItemInterface;
 use Omnipay\Openpay\RestItemInterface;
 
 /**

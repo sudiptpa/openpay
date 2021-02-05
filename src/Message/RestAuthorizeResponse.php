@@ -45,6 +45,7 @@ class RestAuthorizeResponse extends AbstractRestResponse
             $out .= '<input type="hidden" name="'.$field['fieldName'].'" value="'.htmlspecialchars($field['fieldValue']).'" />';
         }
         $out .= '</form>';
+
         return $out;
     }
 }

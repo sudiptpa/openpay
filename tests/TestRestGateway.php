@@ -88,29 +88,29 @@ class TestRestGateway extends \Omnipay\Tests\GatewayTestCase
             'returnUrl'       => 'https://example.com/return',
             'cancelUrl'       => 'https://example.com/cancel',
             'failedUrl'       => 'https://example.com/fail',
-            'retailerOrderNo' => (string)rand(10000, 99999),
-            'items' => [
+            'retailerOrderNo' => (string) rand(10000, 99999),
+            'items'           => [
                 new RestItem([
                     'name'       => 'Item 1',
                     'itemCode'   => '12345',
                     'quantity'   => 3,
                     'price'      => '30.00',
-                    'totalPrice' => '90.00'
+                    'totalPrice' => '90.00',
                 ]),
                 new RestItem([
                     'name'       => 'Shipping',
                     'itemCode'   => '-',
                     'quantity'   => 1,
                     'price'      => '110.00',
-                    'totalPrice' => '110.00'
-                ])
+                    'totalPrice' => '110.00',
+                ]),
             ],
         ];
     }
 
     public function getValidAUCard()
     {
-        return array(
+        return [
             'firstName'        => 'Example',
             'lastName'         => 'User',
             'email'            => 'customer@gmail.com',
@@ -129,7 +129,7 @@ class TestRestGateway extends \Omnipay\Tests\GatewayTestCase
             'shippingState'    => 'VIC',
             'shippingCountry'  => 'AU',
             'shippingPhone'    => '03 8500 0000',
-        );
+        ];
     }
 
 

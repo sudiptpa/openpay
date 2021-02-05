@@ -36,6 +36,7 @@ class RestPingResponse extends AbstractRestResponse
 
     /**
      * Get API Environment Name (eg TrainingAU).
+     *
      * @return string|null
      */
     public function getEnvironmentName()
