@@ -3,7 +3,6 @@
 namespace Omnipay\Openpay;
 
 use Omnipay\Common\AbstractGateway;
-use Omnipay\Openpay\Message;
 use Omnipay\Openpay\Message\RestAuthorizeRequest;
 
 /**
@@ -94,7 +93,7 @@ class RestGateway extends AbstractGateway
      */
     public function authorize(array $parameters = [])
     {
-        return $this->createRequest(RestAuthorizeRequest::class, $parameters);
+        return $this->createRequest(Message\RestAuthorizeRequest::class, $parameters);
     }
 
     /**
@@ -104,7 +103,7 @@ class RestGateway extends AbstractGateway
      */
     public function capture(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestCaptureRequest', $parameters);
+        return $this->createRequest(Message\RestCaptureRequest::class, $parameters);
     }
 
     /**
@@ -114,7 +113,7 @@ class RestGateway extends AbstractGateway
      */
     public function dispatch(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestDispatchRequest', $parameters);
+        return $this->createRequest(Message\RestDispatchRequest::class, $parameters);
     }
 
     /**
@@ -124,7 +123,7 @@ class RestGateway extends AbstractGateway
      */
     public function void(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestCancelRequest', $parameters);
+        return $this->createRequest(Message\RestCancelRequest::class, $parameters);
     }
 
     /**
@@ -134,6 +133,6 @@ class RestGateway extends AbstractGateway
      */
     public function refund(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestRefundRequest', $parameters);
+        return $this->createRequest(Message\RestRefundRequest::class, $parameters);
     }
 }

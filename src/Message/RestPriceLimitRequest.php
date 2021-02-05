@@ -7,7 +7,7 @@ namespace Omnipay\Openpay\Message;
  */
 class RestPriceLimitRequest extends AbstractRestRequest
 {
-    function getHttpMethod()
+    public function getHttpMethod()
     {
         return 'GET';
     }
@@ -17,6 +17,6 @@ class RestPriceLimitRequest extends AbstractRestRequest
      */
     protected function getEndpoint()
     {
-        return parent::getEndpoint() . 'orders/limits';
+        return parent::getEndpoint().'orders/limits';
     }
 }

@@ -15,7 +15,7 @@ class RestPingResponse extends AbstractRestResponse
     }
 
     /**
-     * Gets API Version Application Name
+     * Gets API Version Application Name.
      *
      * @return string|null
      */
@@ -25,7 +25,7 @@ class RestPingResponse extends AbstractRestResponse
     }
 
     /**
-     * Get API Version String
+     * Get API Version String.
      *
      * @return string|null
      */
@@ -35,7 +35,7 @@ class RestPingResponse extends AbstractRestResponse
     }
 
     /**
-     * Get API Environment Name (eg TrainingAU)
+     * Get API Environment Name (eg TrainingAU).
      * @return string|null
      */
     public function getEnvironmentName()

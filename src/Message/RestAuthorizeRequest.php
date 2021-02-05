@@ -60,10 +60,10 @@ class RestAuthorizeRequest extends AbstractRestRequest
     {
         $c = $this->getCard();
         return [
-            'line1' => $c->getShippingAddress1(),
-            'line2' => $c->getShippingAddress2(),
-            'suburb' => $c->getShippingCity(),
-            'state' => $c->getShippingState(),
+            'line1'    => $c->getShippingAddress1(),
+            'line2'    => $c->getShippingAddress2(),
+            'suburb'   => $c->getShippingCity(),
+            'state'    => $c->getShippingState(),
             'postCode' => $c->getShippingPostcode(),
         ];
     }
@@ -76,10 +76,10 @@ class RestAuthorizeRequest extends AbstractRestRequest
             return null;
         }
         return [
-            'line1' => $c->getBillingAddress1(),
-            'line2' => $c->getBillingAddress2(),
-            'suburb' => $c->getBillingCity(),
-            'state' => $c->getBillingState(),
+            'line1'    => $c->getBillingAddress1(),
+            'line2'    => $c->getBillingAddress2(),
+            'suburb'   => $c->getBillingCity(),
+            'state'    => $c->getBillingState(),
             'postCode' => $c->getBillingPostcode(),
         ];
     }
@@ -122,21 +122,21 @@ class RestAuthorizeRequest extends AbstractRestRequest
             'customerJourney' => [
                 'origin' => 'Online',
                 'online' => [
-                    'callbackUrl' => $this->getReturnUrl(),
-                    'cancelUrl' => $this->getCancelUrl(),
-                    'failUrl' => $this->getFailedUrl(),
+                    'callbackUrl'      => $this->getReturnUrl(),
+                    'cancelUrl'        => $this->getCancelUrl(),
+                    'failUrl'          => $this->getFailedUrl(),
                     'planCreationType' => 'pending',
-                    'customerDetails' => [
-                        'firstName' => $this->getCard()->getFirstName(),
-                        'familyName' => $this->getCard()->getLastName(),
-                        'email' => $this->getCard()->getEmail(),
-                        'dateOfBirth' => $this->getDateOfBirth(),
-                        'gender' => $this->getCard()->getGender(),
-                        'phoneNumber' => $this->getCard()->getPhone(),
-                        'deliveryAddress' => $this->getDeliveryAddress(),
+                    'deliveryMethod'   => $this->getPickup() ? 'Pickup' : 'Delivery',
+                    'customerDetails'  => [
+                        'firstName'          => $this->getCard()->getFirstName(),
+                        'familyName'         => $this->getCard()->getLastName(),
+                        'email'              => $this->getCard()->getEmail(),
+                        'dateOfBirth'        => $this->getDateOfBirth(),
+                        'gender'             => $this->getCard()->getGender(),
+                        'phoneNumber'        => $this->getCard()->getPhone(),
+                        'deliveryAddress'    => $this->getDeliveryAddress(),
                         'residentialAddress' => $this->getResidentialAddress(),
                     ],
-                    'deliveryMethod' => $this->getPickup() ? 'Pickup' : 'Delivery',
                 ]
             ],
             'purchasePrice' => self::dollarsToCents($this->getAmount()),
@@ -144,25 +144,25 @@ class RestAuthorizeRequest extends AbstractRestRequest
             'goodsDescription' => $this->getGoodsDescription(),
             'cart' => array_map(function (RestItemInterface $item) {
                 return [
-                    'itemName' => $item->getName(),
-                    'itemGroup' => $item->getItemGroup(),
-                    'itemCode' => $item->getItemCode(),
-                    'itemGroupCode' => $item->getItemGroupCode(),
+                    'itemName'            => $item->getName(),
+                    'itemGroup'           => $item->getItemGroup(),
+                    'itemCode'            => $item->getItemCode(),
+                    'itemGroupCode'       => $item->getItemGroupCode(),
                     'itemRetailUnitPrice' => self::dollarsToCents($item->getPrice()),
-                    'itemQty' => $item->getQuantity(),
-                    'itemRetailCharge' => self::dollarsToCents($item->getTotalPrice()),
+                    'itemQty'             => $item->getQuantity(),
+                    'itemRetailCharge'    => self::dollarsToCents($item->getTotalPrice()),
                 ];
             }, $this->getItems()? $this->getItems()->all():[])
         ];
     }
 
-    static function dollarsToCents($dollars)
+    static public function dollarsToCents($dollars)
     {
         return (int) bcmul('100', $dollars, 0);
     }
 
     protected function getEndpoint()
     {
-        return parent::getEndpoint() . 'orders';
+        return parent::getEndpoint().'orders';
     }
 }

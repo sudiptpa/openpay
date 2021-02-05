@@ -71,11 +71,11 @@ abstract class AbstractRestRequest extends \Omnipay\Common\Message\AbstractReque
     public function getHeaders()
     {
         return [
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json',
-            'Authorization' => 'Basic ' . base64_encode("{$this->getApiKey()}:{$this->getApiToken()}"),
+            'Content-Type'  => 'application/json',
+            'Accept'        => 'application/json',
+            'Authorization' => 'Basic '.base64_encode("{$this->getApiKey()}:{$this->getApiToken()}"),
             'Cache-Control' => 'no-cache',
-            'Connection' => 'close',
+            'Connection'    => 'close',
         ];
     }
 
@@ -101,7 +101,7 @@ abstract class AbstractRestRequest extends \Omnipay\Common\Message\AbstractReque
     }
 
     /** @return string */
-    abstract function getHttpMethod();
+    abstract public function getHttpMethod();
 
     public function getData()
     {
@@ -122,7 +122,7 @@ abstract class AbstractRestRequest extends \Omnipay\Common\Message\AbstractReque
             $this->getHttpMethod() === 'POST' ? json_encode($this->getData()) : null
         );
 
-        $body  =$response->getBody()->getContents();
+        $body = $response->getBody()->getContents();
         $data = json_decode($body, true);
 
         if ($trace) {

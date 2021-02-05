@@ -30,7 +30,7 @@ class RestAuthorizeResponse extends AbstractRestResponse
     }
 
     /**
-     * Return HTML Form that will need to be submitted to go to the next step
+     * Return HTML Form that will need to be submitted to go to the next step.
      *
      * @return string|null
      */
@@ -44,7 +44,7 @@ class RestAuthorizeResponse extends AbstractRestResponse
         foreach ($next['formPost']['formFields'] as $field) {
             $out .= '<input type="hidden" name="'.$field['fieldName'].'" value="'.htmlspecialchars($field['fieldValue']).'" />';
         }
-        $out .= "</form>";
+        $out .= '</form>';
         return $out;
     }
 }

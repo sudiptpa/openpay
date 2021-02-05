@@ -7,7 +7,7 @@ namespace Omnipay\Openpay\Message;
  */
 class RestPingRequest extends AbstractRestRequest
 {
-    function getHttpMethod()
+    public function getHttpMethod()
     {
         return 'GET';
     }
