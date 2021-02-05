@@ -21,7 +21,7 @@ class RestPingResponse extends AbstractRestResponse
      */
     public function getApplicationName()
     {
-        return isset($this->data['applicationName']) ? (string)$this->data['applicationName'] : null;
+        return isset($this->data['applicationName']) ? (string) $this->data['applicationName'] : null;
     }
 
     /**
@@ -31,7 +31,7 @@ class RestPingResponse extends AbstractRestResponse
      */
     public function getApplicationVersion()
     {
-        return isset($this->data['applicationVersion']) ? (string)$this->data['applicationVersion'] : null;
+        return isset($this->data['applicationVersion']) ? (string) $this->data['applicationVersion'] : null;
     }
 
     /**
@@ -41,6 +41,6 @@ class RestPingResponse extends AbstractRestResponse
      */
     public function getEnvironmentName()
     {
-        return isset($this->data['environmentName']) ? (string)$this->data['environmentName'] : null;
+        return isset($this->data['environmentName']) ? (string) $this->data['environmentName'] : null;
     }
 }

@@ -7,7 +7,6 @@ namespace Omnipay\Openpay\Message;
  */
 class RestRefundRequest extends AbstractRestRequest
 {
-
     public function getHttpMethod()
     {
         return 'POST';

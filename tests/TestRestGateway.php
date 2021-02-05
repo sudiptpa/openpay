@@ -2,7 +2,6 @@
 
 namespace Omnipay\Openpay;
 
-
 use Omnipay\Omnipay;
 use Omnipay\Openpay\Message\RestAuthorizeResponse;
 use Omnipay\Openpay\Message\RestPingResponse;
@@ -28,7 +27,6 @@ class TestRestGateway extends \Omnipay\Tests\GatewayTestCase
         return true;
     }
 
-
     public function setUp()
     {
         parent::setUp();
@@ -40,7 +38,6 @@ class TestRestGateway extends \Omnipay\Tests\GatewayTestCase
             'apiToken' => $this->getApiToken(),
             'testMode' => $this->getTestMode(),
         ]);
-
     }
 
     public function testPing()
@@ -55,7 +52,6 @@ class TestRestGateway extends \Omnipay\Tests\GatewayTestCase
 
     public function testPriceLimit()
     {
-
         $this->setMockHttpResponse('RestPriceLimitResponse.txt');
 
         /** @var RestPriceLimitResponse $o */
@@ -68,7 +64,6 @@ class TestRestGateway extends \Omnipay\Tests\GatewayTestCase
 
     public function testAuthorize()
     {
-
         $this->setMockHttpResponse('RestAuthorizeResponse.txt');
 
         /** @var RestAuthorizeResponse $o */
@@ -78,7 +73,6 @@ class TestRestGateway extends \Omnipay\Tests\GatewayTestCase
         $this->assertNotEmpty($o->getOrderId());
         $this->assertEquals('<form action="https://retailer.myopenpay.com.au/websalestraining/" method="POST"><input type="hidden" name="JamCallbackURL" value="https://example.com/return" /><input type="hidden" name="JamCancelURL" value="https://example.com/cancel" /><input type="hidden" name="JamFailURL" value="https://example.com/fail" /><input type="hidden" name="TransactionToken" value="Al5dE65ZExKP8jDF53iQKmFKocB24McXntfc3c4iJI21uQjH6YAK%2BGFnH4Npi7coFvf%2BMYGgXr4WwrCoDFS%2FHoqLtu9Ulbe2G4%2F0cly%2BBeI%3D" /><input type="hidden" name="JamPlanID" value="3000000068423" /></form>', $o->getHiddenForm());
     }
-
 
     public function getOptionsForAuthorize()
     {
@@ -131,6 +125,4 @@ class TestRestGateway extends \Omnipay\Tests\GatewayTestCase
             'shippingPhone'    => '03 8500 0000',
         ];
     }
-
-
 }

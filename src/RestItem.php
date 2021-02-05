@@ -2,9 +2,6 @@
 
 namespace Omnipay\Openpay;
 
-use Omnipay\Common\Helper;
-use Symfony\Component\HttpFoundation\ParameterBag;
-
 /**
  * Cart Item.
  *
@@ -14,7 +11,6 @@ use Symfony\Component\HttpFoundation\ParameterBag;
  */
 class RestItem extends \Omnipay\Common\Item implements \Omnipay\Common\ItemInterface, RestItemInterface
 {
-
     public function getItemGroup()
     {
         return $this->parameters->get('itemGroup');

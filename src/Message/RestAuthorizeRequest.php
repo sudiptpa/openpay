@@ -33,6 +33,7 @@ class RestAuthorizeRequest extends AbstractRestRequest
     {
         return $this->setParameter('failedUrl', $value);
     }
+
     public function getPickup()
     {
         return (bool) $this->getParameter('pickup');
@@ -53,10 +54,10 @@ class RestAuthorizeRequest extends AbstractRestRequest
         return $this->setParameter('dateOfBirth', $value);
     }
 
-
     public function getDeliveryAddress()
     {
         $c = $this->getCard();
+
         return [
             'line1'    => $c->getShippingAddress1(),
             'line2'    => $c->getShippingAddress2(),
@@ -66,13 +67,13 @@ class RestAuthorizeRequest extends AbstractRestRequest
         ];
     }
 
-
     public function getResidentialAddress()
     {
         $c = $this->getCard();
         if (!$c->getBillingAddress1()) {
             return null;
         }
+
         return [
             'line1'    => $c->getBillingAddress1(),
             'line2'    => $c->getBillingAddress2(),
@@ -81,7 +82,6 @@ class RestAuthorizeRequest extends AbstractRestRequest
             'postCode' => $c->getBillingPostcode(),
         ];
     }
-
 
     public function setItems($items)
     {
@@ -135,12 +135,12 @@ class RestAuthorizeRequest extends AbstractRestRequest
                         'deliveryAddress'    => $this->getDeliveryAddress(),
                         'residentialAddress' => $this->getResidentialAddress(),
                     ],
-                ]
+                ],
             ],
-            'purchasePrice' => self::dollarsToCents($this->getAmount()),
-            'retailerOrderNo' => $this->getRetailerOrderNo(),
+            'purchasePrice'    => self::dollarsToCents($this->getAmount()),
+            'retailerOrderNo'  => $this->getRetailerOrderNo(),
             'goodsDescription' => $this->getGoodsDescription(),
-            'cart' => array_map(function (RestItemInterface $item) {
+            'cart'             => array_map(function (RestItemInterface $item) {
                 return [
                     'itemName'            => $item->getName(),
                     'itemGroup'           => $item->getItemGroup(),
@@ -150,11 +150,11 @@ class RestAuthorizeRequest extends AbstractRestRequest
                     'itemQty'             => $item->getQuantity(),
                     'itemRetailCharge'    => self::dollarsToCents($item->getTotalPrice()),
                 ];
-            }, $this->getItems()? $this->getItems()->all():[])
+            }, $this->getItems() ? $this->getItems()->all() : []),
         ];
     }
 
-    static public function dollarsToCents($dollars)
+    public static function dollarsToCents($dollars)
     {
         return (int) bcmul('100', $dollars, 0);
     }
