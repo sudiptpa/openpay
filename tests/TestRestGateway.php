@@ -4,7 +4,6 @@ namespace Omnipay\Openpay;
 
 use Omnipay\Omnipay;
 use Omnipay\Openpay\Message\RestAuthorizeResponse;
-use Omnipay\Openpay\Message\RestCaptureRequest;
 use Omnipay\Openpay\Message\RestCaptureResponse;
 use Omnipay\Openpay\Message\RestFetchTransactionResponse;
 use Omnipay\Openpay\Message\RestPingResponse;
@@ -75,7 +74,7 @@ class TestRestGateway extends \Omnipay\Tests\GatewayTestCase
         $this->assertTrue($o->isSuccessful());
         $this->assertNotEmpty($o->getOrderId());
 //        $this->assertEquals('<form action="https://retailer.myopenpay.com.au/websalestraining/" method="POST"><input type="hidden" name="JamCallbackURL" value="https://example.com/return" /><input type="hidden" name="JamCancelURL" value="https://example.com/cancel" /><input type="hidden" name="JamFailURL" value="https://example.com/fail" /><input type="hidden" name="TransactionToken" value="Al5dE65ZExKP8jDF53iQKmFKocB24McXntfc3c4iJI21uQjH6YAK%2BGFnH4Npi7coFvf%2BMYGgXr4WwrCoDFS%2FHoqLtu9Ulbe2G4%2F0cly%2BBeI%3D" /><input type="hidden" name="JamPlanID" value="3000000068423" /></form>', $o->getHiddenForm());
-        $this->assertEquals('https://retailer.myopenpay.com.au/websalestraining/?TransactionToken=Al5dE65ZExKP8jDF53iQKmFKocB24McXntfc3c4iJI21uQjH6YAK%2BGFnH4Npi7coFvf%2BMYGgXr4WwrCoDFS%2FHoqLtu9Ulbe2G4%2F0cly%2BBeI%3D',$o->getRedirectUrl());
+        $this->assertEquals('https://retailer.myopenpay.com.au/websalestraining/?TransactionToken=Al5dE65ZExKP8jDF53iQKmFKocB24McXntfc3c4iJI21uQjH6YAK%2BGFnH4Npi7coFvf%2BMYGgXr4WwrCoDFS%2FHoqLtu9Ulbe2G4%2F0cly%2BBeI%3D', $o->getRedirectUrl());
     }
 
     public function testCapture()
@@ -103,7 +102,6 @@ class TestRestGateway extends \Omnipay\Tests\GatewayTestCase
         $this->assertEquals('Active', $o->getPlanStatus());
         $this->assertEquals('Approved', $o->getOrderStatus());
     }
-
 
     public function getOptionsForAuthorize()
     {

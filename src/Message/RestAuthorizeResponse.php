@@ -7,8 +7,7 @@ use Omnipay\Common\Message\RedirectResponseInterface;
 /**
  * Class RestAuthorizeResponse.
  */
-class RestAuthorizeResponse extends AbstractRestResponse
-    implements RedirectResponseInterface
+class RestAuthorizeResponse extends AbstractRestResponse implements RedirectResponseInterface
 {
     public function getOrderId()
     {
@@ -34,6 +33,7 @@ class RestAuthorizeResponse extends AbstractRestResponse
 
     /**
      * Return HTML Form that will need to be submitted to go to the next step.
+     *
      * @deprecated Outdated information found in API Docs, please use redirectUrl
      * @see self::getRedirectUrl()
      *
@@ -45,9 +45,9 @@ class RestAuthorizeResponse extends AbstractRestResponse
         if ($next['type'] !== 'FormPost') {
             return null;
         }
-        $out = '<form action="' . $next['formPost']['formPostUrl'] . '" method="POST">';
+        $out = '<form action="'.$next['formPost']['formPostUrl'].'" method="POST">';
         foreach ($next['formPost']['formFields'] as $field) {
-            $out .= '<input type="hidden" name="' . $field['fieldName'] . '" value="' . htmlspecialchars($field['fieldValue']) . '" />';
+            $out .= '<input type="hidden" name="'.$field['fieldName'].'" value="'.htmlspecialchars($field['fieldValue']).'" />';
         }
         $out .= '</form>';
 
@@ -56,21 +56,24 @@ class RestAuthorizeResponse extends AbstractRestResponse
 
     public function isRedirect()
     {
-        (bool)$this->getRedirectUrl();
+        (bool) $this->getRedirectUrl();
     }
-
 
     public function getRedirectUrl()
     {
         $url = null;
         if (isset($this->data['nextAction']['formPost']['formFields']) &&
-            is_array($this->data['nextAction']['formPost']['formFields']))
-            foreach ($this->data['nextAction']['formPost']['formFields'] as $field)
-                if ($field['fieldName'] === 'TransactionToken')
+            is_array($this->data['nextAction']['formPost']['formFields'])) {
+            foreach ($this->data['nextAction']['formPost']['formFields'] as $field) {
+                if ($field['fieldName'] === 'TransactionToken') {
                     $url = $field['fieldValue'];
+                }
+            }
+        }
         if ($url !== null) {
             $url = "{$this->data['nextAction']['formPost']['formPostUrl']}?TransactionToken={$url}";
         }
+
         return $url;
     }
 }
