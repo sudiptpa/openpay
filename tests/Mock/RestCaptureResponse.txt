@@ -1,0 +1,17 @@
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+Content-Length: 103
+Connection: close
+Date: Sun, 07 Feb 2021 22:41:46 GMT
+x-amzn-RequestId: e101258c-6700-4fb7-8a6e-e7776c1599c3
+Strict-Transport-Security: max-age=2592000
+x-amzn-Remapped-Content-Length: 103
+api-supported-versions: 1.20191010, 1.20201120
+x-amz-apigw-id: aZXqqG5eSwMFhNA=
+X-Amzn-Trace-Id: Root=1-60206caa-6053251167c8c8cf3f23563e;Sampled=0
+X-Cache: Error from cloudfront
+Via: 1.1 1b96d3353bf60eaa42f8e25813c6c660.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: MEL50-C2
+X-Amz-Cf-Id: u4UlOzIfdCed8BvT7kxdpE8oVPkqn-zhFnB1uAC-Jm5HGIgyoM-vyA==
+
+{"type":"","title":"Error 12704","status":404,"detail":"Plan ID supplied does not exist","instance":""}
