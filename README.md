@@ -132,8 +132,8 @@ And run composer to update your dependencies:
         
         if($authResp->isSuccessful()) {
           saveOrderId($authResp->getOrderId());
-          echo $authResp->getHiddenForm();
-          echo '<script>document.forms[0].submit()</script>';
+          header('Location: '.$authResp->getRedirectUrl());
+          exit();
         } else {
           reportPaymentFailure('Open pay did not accept your order',$authResp->getData());
         }
@@ -141,14 +141,20 @@ And run composer to update your dependencies:
         
         // Capture after user completed plan registration via return URL
         
+        if($_REQUEST['status'] !== 'LODGED')
+            throw new \RuntimeException('Payment Setup Failed');
         /** @var \Omnipay\Openpay\Message\RestCaptureResponse $capResp */
         $capResp = $gateway->capture([
-            'orderId' => loadOrderId(),
+            'orderId' => $_REQUEST['planid'],
         ])->send();
 
         if($capResp->isSuccessful()) {
             markPaymentComplete($capResp->getOrderId(), $capResp->getPurchasePrice());
         }
+        /** @var \Omnipay\Openpay\Message\RestFetchTransactionResponse $tx */
+        $tx = $gateway->fetchTransaction(['orderId' => $_REQUEST['planid']])->send();
+        $plan = $tx->getPlanStatus(); // Active
+        $order = $tx->getOrderStatus(); // Pending | Approved
     } catch (Exception $e) {
         return $e->getMessage();
     }

@@ -4,6 +4,8 @@ namespace Omnipay\Openpay\Message;
 
 /**
  * Class RestCaptureRequest.
+ *
+ * @method \Omnipay\Openpay\Message\RestFetchTransactionResponse send() Send Response
  */
 class RestFetchTransactionRequest extends AbstractRestRequest
 {
