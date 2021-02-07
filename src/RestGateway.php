@@ -109,6 +109,16 @@ class RestGateway extends AbstractGateway
     /**
      * @param array $parameters
      *
+     * @return \Omnipay\Openpay\Message\RestFetchTransactionRequest
+     */
+    public function fetchTransaction(array $parameters = [])
+    {
+        return $this->createRequest(Message\RestFetchTransactionRequest::class, $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     *
      * @return \Omnipay\Openpay\Message\RestDispatchRequest
      */
     public function dispatch(array $parameters = [])
