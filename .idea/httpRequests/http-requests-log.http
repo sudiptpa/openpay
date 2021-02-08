@@ -1,0 +1,146 @@
+GET https://api.training.myopenpay.com.au/v1/merchant/orders/limits
+Authorization: Basic 3-373 180D731A-F9C8-437B-8FC0-8341196D9CF0
+Accept: application/json
+
+<> 2021-02-05T110032.200.json
+
+###
+
+GET https://api.training.myopenpay.com.au/v1/merchant/diagnostics/version
+Authorization: Basic 3-373 180D731A-F9C8-437B-8FC0-8341196D9CF0
+Accept: application/json
+Content-Type: application/json
+Accept: application/json
+
+<> 2021-02-05T104048.200.json
+
+###
+
+GET https://api.training.myopenpay.com.au/v1/merchant/diagnostics/version
+Authorization: Basic 3-373 180D731A-F9C8-437B-8FC0-8341196D9CF0
+Accept: application/json
+Content-Type: application/json
+Accept: application/json
+
+<> 2021-02-05T104007.200.json
+
+###
+
+GET https://api.training.myopenpay.com.au/v1/merchant/diagnostics/version
+Authorization: Basic 3-373 180D731A-F9C8-437B-8FC0-8341196D9CF0
+Accept: application/json
+Content-Type: application/json
+Accept: application/json
+
+<> 2021-02-05T103053.200.json
+
+###
+
+GET https://api.training.myopenpay.com.au/v1/merchant/diagnostics/version
+Authorization: Basic 3-373 180D731A-F9C8-437B-8FC0-8341196D9CF0
+Accept: application/json
+Content-Type: application/json
+Accept: application/json
+
+<> 2021-02-05T103028.200.json
+
+###
+
+GET https://api.training.myopenpay.com.au/v1/merchant/diagnostics/version
+Authorization: Basic 3-373 180D731A-F9C8-437B-8FC0-8341196D9CF0
+Accept: application/json
+Content-Type: application/json
+Accept: application/json
+
+{}
+
+<> 2021-02-05T103020.403.html
+
+###
+
+GET https://api.training.myopenpay.com.au/v1/merchant/diagnostics/version
+Authorization: Basic 3-373 180D731A-F9C8-437B-8FC0-8341196D9CF0
+Accept: application/json
+Content-Type: application/json
+Accept: application/json
+
+[]
+
+<> 2021-02-05T103011.403.html
+
+###
+
+GET https://api.training.myopenpay.com.au/v1/merchant/diagnostics/version
+Authorization: Basic 3-373 180D731A-F9C8-437B-8FC0-8341196D9CF0
+Accept: application/json
+Content-Type: application/json
+Accept: application/json
+
+<> 2021-02-05T103002.200.json
+
+###
+
+GET https://api.training.myopenpay.com.au/v1/merchant/diagnostics/version
+Authorization: Basic 3-373 180D731A-F9C8-437B-8FC0-8341196D9CF0
+Accept: application/json
+
+<> 2021-02-05T102933.200.json
+
+###
+
+GET https://api.training.myopenpay.com.au/v1/merchant/orders/limits
+Authorization: Basic 3-373 180D731A-F9C8-437B-8FC0-8341196D9CF0
+Accept: application/json
+
+<> 2021-02-05T101911.200.json
+
+###
+
+GET https://api.training.myopenpay.com.au/v1/merchant/orders/limits
+Accept: application/json
+Authorization: Basic 3-373:180D731A-F9C8-437B-8FC0-8341196D9CF0
+
+<> 2021-02-05T101728.401.json
+
+###
+
+GET https://api.training.myopenpay.com.au/v1/merchant/diagnostics/version
+Authorization: Basic 3-373 180D731A-F9C8-437B-8FC0-8341196D9CF0
+Accept: application/json
+
+<> 2021-02-05T101725.200.json
+
+###
+
+GET https://api.training.myopenpay.com.au/v1/merchant/orders/limits
+Accept: application/json
+Authorization: Basic 3-373|180D731A-F9C8-437B-8FC0-8341196D9CF0
+
+<> 2021-02-05T101657.401.json
+
+###
+
+GET https://api.training.myopenpay.com.au/v1/merchant/orders/limits
+Accept: application/json
+Authorization: Basic 3-373:180D731A-F9C8-437B-8FC0-8341196D9CF0
+
+<> 2021-02-05T101636.401.json
+
+###
+
+GET https://api.training.myopenpay.com.au/v1/merchant/orders/limits
+Accept: application/json
+Authorization: Basic 3-373:180D731A-F9C8-437B-8FC0-8341196D9CF0
+
+<> 2021-02-05T101617.401.json
+
+###
+
+GET https://api.training.myopenpay.com.au/v1/merchant/diagnostics/version
+Accept: application/json
+Authorization: Basic 3-373:180D731A-F9C8-437B-8FC0-8341196D9CF0
+
+<> 2021-02-05T101434.200.json
+
+###
+

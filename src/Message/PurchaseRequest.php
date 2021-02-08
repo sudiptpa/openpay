@@ -41,6 +41,10 @@ class PurchaseRequest extends AbstractRequest
      */
     public function sendData($data)
     {
+        if ($this->getSSLCertificatePath()) {
+            $this->httpClient->setSslVerification($this->getSSLCertificatePath());
+        }
+
         $redirectUrl = $this->getEndpoint().'?'.http_build_query($data);
 
         return $this->response = new PurchaseResponse($this, $data, $redirectUrl);

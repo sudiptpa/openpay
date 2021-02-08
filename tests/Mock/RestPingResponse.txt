@@ -1,0 +1,22 @@
+HTTP/1.1 200 OK
+status: 200
+Content-Type: application/json; charset=utf-8
+Content-Length: 109
+Connection: keep-alive
+Date: Thu, 04 Feb 2021 23:40:07 GMT
+x-amzn-RequestId: 6c624d82-5c4b-421c-9d4d-724d6f02327c
+Strict-Transport-Security: max-age=2592000
+x-amzn-Remapped-Content-Length: 109
+api-supported-versions: 1.20191010
+x-amz-apigw-id: aPnZvFOyywMFuag=
+X-Amzn-Trace-Id: Root=1-601c85d7-52d71f4742cef2a86bd015da;Sampled=0
+X-Cache: Miss from cloudfront
+Via: 1.1 2105e9591880f79863df3d8c99a17989.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: MEL50-C2
+X-Amz-Cf-Id: 6ejoatlOFRrYqYB8S2V5tqwSn8Syk6GvbdBiXXHJMUeD9fSkGpaYSg==
+
+{
+  "applicationName": "IntegrationApi",
+  "applicationVersion": "1.0.20330-vcbd840f",
+  "environmentName": "TrainingAU"
+}

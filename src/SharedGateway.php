@@ -340,6 +340,22 @@ class SharedGateway extends AbstractGateway
     }
 
     /**
+     * @param $value
+     */
+    public function setSSLCertificatePath($value)
+    {
+        return $this->setParameter('sslCertificatePath', $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getSSLCertificatePath()
+    {
+        return $this->getParameter('sslCertificatePath');
+    }
+
+    /**
      * @param array $parameters
      *
      * @return \Omnipay\Openpay\Message\PurchaseRequest

@@ -66,16 +66,17 @@ class RefundRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        $httpResponse = $this->httpClient->request(
-            'POST',
+        if ($this->getSSLCertificatePath()) {
+            $this->httpClient->setSslVerification($this->getSSLCertificatePath());
+        }
+
+        $httpResponse = $this->httpClient->post(
             $this->getEndpoint(),
             $this->getRequestHeaders(),
             $data->asXML()
-        );
+        )->send();
 
-        $data = new SimpleXMLElement($httpResponse->getBody()->getContents());
-
-        return $this->response = new RefundResponse($this, $data);
+        return $this->response = new RefundResponse($this, $httpResponse->xml());
     }
 
     /**
