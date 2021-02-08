@@ -14,6 +14,7 @@ class RestFetchTransactionResponse extends AbstractRestResponse
     {
         return isset($this->data['orderId']) ? (string) $this->data['orderId'] : null;
     }
+
     /**
      * @return string|null
      */
@@ -21,6 +22,7 @@ class RestFetchTransactionResponse extends AbstractRestResponse
     {
         return isset($this->data['orderStatus']) ? (string) $this->data['orderStatus'] : null;
     }
+
     /**
      * @return string|null
      */
