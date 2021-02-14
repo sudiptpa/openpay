@@ -12,6 +12,11 @@ class RestCaptureResponse extends AbstractRestResponse
         return isset($this->data['orderId']) ? $this->data['orderId'] : null;
     }
 
+    public function getPurchasePrice()
+    {
+        return isset($this->data['purchasePrice']) ? (int) $this->data['purchasePrice'] : null;
+    }
+
     public function isSuccessful()
     {
         $statusCode = $this->getStatusCode();

@@ -3,9 +3,9 @@
 namespace Omnipay\Openpay\Message;
 
 /**
- * Class RestVerifyOrderRequest.
+ * Class RestFetchTransactionRequest.
  */
-class RestVerifyOrderRequest extends AbstractRestRequest
+class RestFetchTransactionRequest extends AbstractRestRequest
 {
     public function getData()
     {
@@ -42,10 +42,10 @@ class RestVerifyOrderRequest extends AbstractRestRequest
      * @param array $headers
      * @param $status
      *
-     * @return \Omnipay\Openpay\Message\RestVerifyOrderResponse
+     * @return \Omnipay\Openpay\Message\RestFetchTransactionResponse
      */
     protected function createResponse($data, $headers = [], $status = 404)
     {
-        return $this->response = new RestVerifyOrderResponse($this, $data, $headers, $status);
+        return $this->response = new RestFetchTransactionResponse($this, $data, $headers, $status);
     }
 }

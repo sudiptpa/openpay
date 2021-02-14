@@ -108,21 +108,21 @@ class RestGateway extends AbstractGateway
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\Openpay\Message\RestDispatchRequest
+     * @return \Omnipay\Openpay\Message\RestFetchTransactionRequest
      */
-    public function dispatch(array $parameters = [])
+    public function fetchTransaction(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestDispatchRequest', $parameters);
+        return $this->createRequest('\Omnipay\Openpay\Message\RestFetchTransactionRequest', $parameters);
     }
 
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\Openpay\Message\RestVerifyOrderRequest
+     * @return \Omnipay\Openpay\Message\RestDispatchRequest
      */
-    public function verifyOrder(array $parameters = [])
+    public function dispatch(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestVerifyOrderRequest', $parameters);
+        return $this->createRequest('\Omnipay\Openpay\Message\RestDispatchRequest', $parameters);
     }
 
     /**

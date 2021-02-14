@@ -8,8 +8,8 @@ $gateway = Omnipay::create('Openpay_Shared');
 
 // Replace xxxx with our own keys
 
-$gateway->setMerchantId('30000000000000977|526d44c3-1bff-4fb1-861b-f0788c1c9c22');
-$gateway->setAuthToken('526d44c3-1bff-4fb1-861b-f0788c1c9c22');
+$gateway->setMerchantId('xxxxx|xxxx-xxxx-xxxx-xxxx-xxxxx');
+$gateway->setAuthToken('xxxx-xxx-xxxx-xxxx-xxxx');
 
 $gateway->setTestMode(true);
 

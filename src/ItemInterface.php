@@ -10,7 +10,5 @@ interface ItemInterface extends \Omnipay\Common\ItemInterface
 
     public function getItemGroupCode();
 
-    public function getItemRetailUnitPrice();
-
-    public function getItemRetailCharge();
+    public function getTotalPrice();
 }
