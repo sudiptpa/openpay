@@ -2,9 +2,6 @@
 
 namespace Omnipay\Openpay;
 
-use Omnipay\Common\Helper;
-use Symfony\Component\HttpFoundation\ParameterBag;
-
 /**
  * Cart Item.
  *
