@@ -25,7 +25,7 @@ class RestAuthorizeResponse extends AbstractRestResponse implements RedirectResp
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isSuccessful()
     {
@@ -82,7 +82,7 @@ class RestAuthorizeResponse extends AbstractRestResponse implements RedirectResp
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isRedirect()
     {
@@ -97,7 +97,7 @@ class RestAuthorizeResponse extends AbstractRestResponse implements RedirectResp
         if ($this->isRequestFormPost()) {
             $url = $this->data['nextAction']['formPost']['formPostUrl'];
 
-            return $url . '?TransactionToken=' . $this->getTransactionToken();
+            return $url.'?TransactionToken='.$this->getTransactionToken();
         }
     }
 }

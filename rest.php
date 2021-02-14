@@ -1,11 +1,8 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__.'/vendor/autoload.php';
 
 use Omnipay\Omnipay;
-use Omnipay\Openpay\Enums\DeliveryMethod;
-use Omnipay\Openpay\Enums\OriginType;
-use Omnipay\Openpay\Enums\PlanCreationType;
 use Omnipay\Openpay\Item;
 
 $gateway = Omnipay::create('Openpay_Rest');
@@ -25,51 +22,50 @@ $gateway->setTestMode(true);
 
 try {
     $card = [
-        'firstName' => 'Example',
-        'lastName' => 'User',
-        'email' => 'customer@gmail.com',
-        'phone' => '0400123123',
-        'billingAddress1' => '123 Billing St',
-        'billingAddress2' => 'Billsville',
-        'billingCity' => 'Billstown',
-        'billingPostcode' => '3133',
-        'billingState' => 'VIC',
-        'billingCountry' => 'AU',
-        'billingPhone' => '0400 123 123',
+        'firstName'        => 'Example',
+        'lastName'         => 'User',
+        'email'            => 'customer@gmail.com',
+        'phone'            => '0400123123',
+        'billingAddress1'  => '123 Billing St',
+        'billingAddress2'  => 'Billsville',
+        'billingCity'      => 'Billstown',
+        'billingPostcode'  => '3133',
+        'billingState'     => 'VIC',
+        'billingCountry'   => 'AU',
+        'billingPhone'     => '0400 123 123',
         'shippingAddress1' => '123 Shipping St',
         'shippingAddress2' => 'Shipsville',
-        'shippingCity' => 'Shipstown',
+        'shippingCity'     => 'Shipstown',
         'shippingPostcode' => '3000',
-        'shippingState' => 'VIC',
-        'shippingCountry' => 'AU',
-        'shippingPhone' => '03 8500 0000',
+        'shippingState'    => 'VIC',
+        'shippingCountry'  => 'AU',
+        'shippingPhone'    => '03 8500 0000',
     ];
 
     $response = $gateway->authorize([
-        'amount' => '200.00',
-        'card' => $card,
-        'returnUrl' => 'https://example.com/return',
-        'cancelUrl' => 'https://example.com/cancel',
-        'failedUrl' => 'https://example.com/fail',
+        'amount'          => '200.00',
+        'card'            => $card,
+        'returnUrl'       => 'https://example.com/return',
+        'cancelUrl'       => 'https://example.com/cancel',
+        'failedUrl'       => 'https://example.com/fail',
         'retailerOrderNo' => 'abc123',
-        'items' => [
+        'items'           => [
             new Item([
-                'name' => 'Item 1',
-                'itemCode' => '12345',
-                'quantity' => 3,
-                'price' => '30.00',
+                'name'       => 'Item 1',
+                'itemCode'   => '12345',
+                'quantity'   => 3,
+                'price'      => '30.00',
                 'totalPrice' => '90.00',
             ]),
             new Item([
-                'name' => 'Shipping',
-                'itemCode' => '-',
-                'quantity' => 1,
-                'price' => '110.00',
+                'name'       => 'Shipping',
+                'itemCode'   => '-',
+                'quantity'   => 1,
+                'price'      => '110.00',
                 'totalPrice' => '110.00',
             ]),
         ],
     ])->send();
-
 
     var_dump($response->isRedirect());
 
@@ -96,7 +92,6 @@ try {
     // $plan = $tx->getPlanStatus(); // Active
 
     // $order = $tx->getOrderStatus(); // Pending | Approved
-
 } catch (Exception $e) {
     var_dump($e->getMessage());
     exit();

@@ -27,6 +27,7 @@ abstract class AbstractRestRequest extends \Omnipay\Common\Message\AbstractReque
 
     /**
      * @param $value
+     *
      * @return string
      */
     public function setApiKey($value)
@@ -44,6 +45,7 @@ abstract class AbstractRestRequest extends \Omnipay\Common\Message\AbstractReque
 
     /**
      * @param $value
+     *
      * @return string
      */
     public function setApiToken($value)
@@ -61,6 +63,7 @@ abstract class AbstractRestRequest extends \Omnipay\Common\Message\AbstractReque
 
     /**
      * @param $value
+     *
      * @return string
      */
     public function setOrderId($value)
@@ -71,11 +74,11 @@ abstract class AbstractRestRequest extends \Omnipay\Common\Message\AbstractReque
     public function getHeaders()
     {
         return [
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json',
-            'Authorization' => 'Basic ' . base64_encode("{$this->getApiKey()}:{$this->getApiToken()}"),
+            'Content-Type'  => 'application/json',
+            'Accept'        => 'application/json',
+            'Authorization' => 'Basic '.base64_encode("{$this->getApiKey()}:{$this->getApiToken()}"),
             'Cache-Control' => 'no-cache',
-            'Connection' => 'close',
+            'Connection'    => 'close',
         ];
     }
 
