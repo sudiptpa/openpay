@@ -56,12 +56,12 @@ abstract class AbstractRestRequest extends \Omnipay\Common\Message\AbstractReque
         $token = base64_encode("{$this->getApiKey()}:{$this->getApiToken()}");
 
         return [
-            'Content-Type'  => 'application/json',
-            'Accept'        => 'application/json',
+            'Content-Type'    => 'application/json',
+            'Accept'          => 'application/json',
             'openpay-version' => $this->getApiVersion(),
-            'Authorization' => "Basic {$token}",
-            'Cache-Control' => 'no-cache',
-            'Connection'    => 'close',
+            'Authorization'   => "Basic {$token}",
+            'Cache-Control'   => 'no-cache',
+            'Connection'      => 'close',
         ];
     }
 
