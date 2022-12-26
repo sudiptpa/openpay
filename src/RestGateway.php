@@ -56,7 +56,7 @@ class RestGateway extends AbstractGateway
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\Openpay\Message\Rest\PriceLimitRequest
+     * @return \Omnipay\Openpay\Message\Rest\OrderLimitRequest
      */
     public function orderLimit(array $parameters = [])
     {
