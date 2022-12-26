@@ -114,13 +114,13 @@ class AuthorizeRequest extends AbstractRequest
     public function getCustomerDetails()
     {
         return [
-            'firstName' => $this->getCard()->getFirstName(),
-            'familyName' => $this->getCard()->getLastName(),
-            'email' => $this->getCard()->getEmail(),
-            'dateOfBirth' => $this->getDateOfBirth(),
-            'gender' => $this->getCard()->getGender(),
-            'phoneNumber' => $this->getCard()->getPhone(),
-            'deliveryAddress' => $this->getDeliveryAddress(),
+            'firstName'          => $this->getCard()->getFirstName(),
+            'familyName'         => $this->getCard()->getLastName(),
+            'email'              => $this->getCard()->getEmail(),
+            'dateOfBirth'        => $this->getDateOfBirth(),
+            'gender'             => $this->getCard()->getGender(),
+            'phoneNumber'        => $this->getCard()->getPhone(),
+            'deliveryAddress'    => $this->getDeliveryAddress(),
             'residentialAddress' => $this->getResidentialAddress(),
         ];
     }
@@ -130,10 +130,10 @@ class AuthorizeRequest extends AbstractRequest
         $card = $this->getCard();
 
         return [
-            'line1' => $card->getShippingAddress1(),
-            'line2' => $card->getShippingAddress2(),
-            'suburb' => $card->getShippingCity(),
-            'state' => $card->getShippingState(),
+            'line1'    => $card->getShippingAddress1(),
+            'line2'    => $card->getShippingAddress2(),
+            'suburb'   => $card->getShippingCity(),
+            'state'    => $card->getShippingState(),
             'postCode' => $card->getShippingPostcode(),
         ];
     }
@@ -143,10 +143,10 @@ class AuthorizeRequest extends AbstractRequest
         $card = $this->getCard();
 
         return [
-            'line1' => $card->getBillingAddress1(),
-            'line2' => $card->getBillingAddress2(),
-            'suburb' => $card->getBillingCity(),
-            'state' => $card->getBillingState(),
+            'line1'    => $card->getBillingAddress1(),
+            'line2'    => $card->getBillingAddress2(),
+            'suburb'   => $card->getBillingCity(),
+            'state'    => $card->getBillingState(),
             'postCode' => $card->getBillingPostcode(),
         ];
     }
@@ -155,12 +155,12 @@ class AuthorizeRequest extends AbstractRequest
     {
         return [
             'online' => [
-                'callbackUrl' => $this->getReturnUrl(),
-                'cancelUrl' => $this->getCancelUrl(),
-                'failUrl' => $this->getFailedUrl(),
+                'callbackUrl'      => $this->getReturnUrl(),
+                'cancelUrl'        => $this->getCancelUrl(),
+                'failUrl'          => $this->getFailedUrl(),
                 'planCreationType' => $this->getPlanCreationType() ?: PlanCreationType::CREATE_INSTANT,
-                'deliveryMethod' => $this->getDeliveryMethod() ?: DeliveryMethod::DELIVERY,
-                'customerDetails' => $this->getCustomerDetails(),
+                'deliveryMethod'   => $this->getDeliveryMethod() ?: DeliveryMethod::DELIVERY,
+                'customerDetails'  => $this->getCustomerDetails(),
             ],
         ];
     }
@@ -170,7 +170,7 @@ class AuthorizeRequest extends AbstractRequest
         return [
             'posApp' => [
                 'employeeCode' => $this->getEmployeeCode(),
-                'customerId' => $this->getCustomerId(),
+                'customerId'   => $this->getCustomerId(),
             ],
         ];
     }
@@ -194,13 +194,13 @@ class AuthorizeRequest extends AbstractRequest
 
         foreach ($this->getItems()->all() as $item) {
             $stack[] = [
-                'itemName' => $item->getName(),
-                'itemGroup' => $item->getItemGroup(),
-                'itemCode' => $item->getItemCode(),
-                'itemGroupCode' => $item->getItemGroupCode(),
+                'itemName'            => $item->getName(),
+                'itemGroup'           => $item->getItemGroup(),
+                'itemCode'            => $item->getItemCode(),
+                'itemGroupCode'       => $item->getItemGroupCode(),
                 'itemRetailUnitPrice' => $this->getCentAmount($item->getPrice()),
-                'itemQty' => $item->getQuantity(),
-                'itemRetailCharge' => $this->getCentAmount($item->getTotalPrice()),
+                'itemQty'             => $item->getQuantity(),
+                'itemRetailCharge'    => $this->getCentAmount($item->getTotalPrice()),
             ];
         }
 
@@ -214,10 +214,10 @@ class AuthorizeRequest extends AbstractRequest
         $stack = array_merge([
             'customerJourney' => $this->getCustomerJourney(),
         ], [
-            'purchasePrice' => $this->getCentAmount($this->getAmount()),
-            'retailerOrderNo' => $this->getRetailerOrderNo(),
+            'purchasePrice'    => $this->getCentAmount($this->getAmount()),
+            'retailerOrderNo'  => $this->getRetailerOrderNo(),
             'goodsDescription' => $this->getGoodsDescription(),
-            'cart' => $this->getCartItems(),
+            'cart'             => $this->getCartItems(),
         ]);
 
         return $stack;
@@ -241,7 +241,7 @@ class AuthorizeRequest extends AbstractRequest
 
     protected function getEndpoint()
     {
-        return parent::getEndpoint() . 'orders';
+        return parent::getEndpoint().'orders';
     }
 
     protected function createResponse($data, $headers = [], $status = 404)
