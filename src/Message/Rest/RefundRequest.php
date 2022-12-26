@@ -1,11 +1,11 @@
 <?php
 
-namespace Omnipay\Openpay\Message;
+namespace Omnipay\Openpay\Message\Rest;
 
 /**
- * Class RestRefundRequest.
+ * Class RefundRequest.
  */
-class RestRefundRequest extends AbstractRestRequest
+class RefundRequest extends AbstractRequest
 {
     public function getFullRefund()
     {
@@ -39,34 +39,18 @@ class RestRefundRequest extends AbstractRestRequest
 
     public function sendData($data = [])
     {
-        $headers = $this->getHeaders();
+        $response = $this->httpClient->post($this->getEndpoint(), $this->getHeaders(), json_encode($data))->send();
 
-        $url = $this->getEndpoint();
-
-        $response = $this->httpClient->post($url, $headers, json_encode($data))->send();
-
-        $data = json_decode($response->getBody(), true);
-
-        return $this->createResponse($data, $response->getHeaders(), $response->getStatusCode());
+        return $this->createResponse($response->json(), $response->getHeaders(), $response->getStatusCode());
     }
 
-    /**
-     * @return string
-     */
     protected function getEndpoint()
     {
         return parent::getEndpoint().vsprintf('orders/%s/refund', [$this->getOrderId()]);
     }
 
-    /**
-     * @param $data
-     * @param array $headers
-     * @param $status
-     *
-     * @return \Omnipay\Openpay\Message\RestRefundResponse
-     */
     protected function createResponse($data, $headers = [], $status = 404)
     {
-        return $this->response = new RestRefundResponse($this, $data, $headers, $status);
+        return $this->response = new RefundResponse($this, $data, $headers, $status);
     }
 }

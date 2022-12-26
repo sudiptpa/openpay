@@ -56,7 +56,7 @@ class RestGateway extends AbstractGateway
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\Openpay\Message\RestPriceLimitRequest
+     * @return \Omnipay\Openpay\Message\Rest\PriceLimitRequest
      */
     public function orderLimit(array $parameters = [])
     {
@@ -66,7 +66,7 @@ class RestGateway extends AbstractGateway
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\Openpay\Message\RestAuthorizeRequest
+     * @return \Omnipay\Openpay\Message\Rest\AuthorizeRequest
      */
     public function authorize(array $parameters = [])
     {
@@ -76,50 +76,30 @@ class RestGateway extends AbstractGateway
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\Openpay\Message\RestCaptureRequest
+     * @return \Omnipay\Openpay\Message\Rest\CaptureRequest
      */
     public function capture(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestCaptureRequest', $parameters);
+        return $this->createRequest('\Omnipay\Openpay\Message\Rest\CaptureRequest', $parameters);
     }
 
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\Openpay\Message\RestFetchTransactionRequest
+     * @return \Omnipay\Openpay\Message\Rest\FetchTransactionRequest
      */
     public function fetchTransaction(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestFetchTransactionRequest', $parameters);
+        return $this->createRequest('\Omnipay\Openpay\Message\Rest\FetchTransactionRequest', $parameters);
     }
 
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\Openpay\Message\RestDispatchRequest
-     */
-    public function dispatch(array $parameters = [])
-    {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestDispatchRequest', $parameters);
-    }
-
-    /**
-     * @param array $parameters
-     *
-     * @return \Omnipay\Openpay\Message\RestCancelRequest
-     */
-    public function void(array $parameters = [])
-    {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestCancelRequest', $parameters);
-    }
-
-    /**
-     * @param array $parameters
-     *
-     * @return \Omnipay\Openpay\Message\RestRefundRequest
+     * @return \Omnipay\Openpay\Message\Rest\RefundRequest
      */
     public function refund(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestRefundRequest', $parameters);
+        return $this->createRequest('\Omnipay\Openpay\Message\Rest\RefundRequest', $parameters);
     }
 }
