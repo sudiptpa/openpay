@@ -1,11 +1,11 @@
 <?php
 
-namespace Omnipay\Openpay\Message;
+namespace Omnipay\Openpay\Message\Rest;
 
 /**
- * Class RestPriceLimitResponse.
+ * Class OrderLimitResponse.
  */
-class RestPriceLimitResponse extends AbstractRestResponse
+class OrderLimitResponse extends AbstractResponse
 {
     public function isSuccessful()
     {

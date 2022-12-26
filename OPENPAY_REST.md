@@ -8,8 +8,9 @@
 
         $gateway = Omnipay::create('Openpay_Rest');
 
-        $gateway->setMerchantId('xxxxxxx|xxxxxxx-xxx-xxxx');
-        $gateway->setAuthToken('xxxxxxxx');
+        $gateway->setApiKey(xxxx.xxxx);
+        $gateway->setApiToken(xxxxxxx.xxxxxxx.xxx.xxxx);
+        $gateway->setApiVersion('1.20210320');
 
         $gateway->setTestMode(true);
 

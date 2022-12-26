@@ -1,13 +1,13 @@
 <?php
 
-namespace Omnipay\Openpay\Message;
+namespace Omnipay\Openpay\Message\Rest;
 
 use Omnipay\Common\Message\RequestInterface;
 
 /**
- * Class AbstractRestResponse.
+ * Class AbstractResponse.
  */
-class AbstractRestResponse extends \Omnipay\Common\Message\AbstractResponse
+class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
 {
     /**
      * @param RequestInterface $request

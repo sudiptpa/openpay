@@ -1,6 +1,6 @@
 <?php
 
-namespace Omnipay\Openpay\Message;
+namespace Omnipay\Openpay\Message\Rest;
 
 use Omnipay\Common\ItemBag;
 use Omnipay\Openpay\Enums\DeliveryMethod;
@@ -8,9 +8,9 @@ use Omnipay\Openpay\Enums\OriginType;
 use Omnipay\Openpay\Enums\PlanCreationType;
 
 /**
- * Class RestAuthorizeRequest.
+ * Class AuthorizeRequest.
  */
-class RestAuthorizeRequest extends AbstractRestRequest
+class AuthorizeRequest extends AbstractRequest
 {
     public function getOrigin()
     {
@@ -82,32 +82,6 @@ class RestAuthorizeRequest extends AbstractRestRequest
         return $this->setParameter('dateOfBirth', $value);
     }
 
-    public function getDeliveryAddress()
-    {
-        $card = $this->getCard();
-
-        return [
-            'line1'    => $card->getShippingAddress1(),
-            'line2'    => $card->getShippingAddress2(),
-            'suburb'   => $card->getShippingCity(),
-            'state'    => $card->getShippingState(),
-            'postCode' => $card->getShippingPostcode(),
-        ];
-    }
-
-    public function getResidentialAddress()
-    {
-        $card = $this->getCard();
-
-        return [
-            'line1'    => $card->getBillingAddress1(),
-            'line2'    => $card->getBillingAddress2(),
-            'suburb'   => $card->getBillingCity(),
-            'state'    => $card->getBillingState(),
-            'postCode' => $card->getBillingPostcode(),
-        ];
-    }
-
     public function setItems($items)
     {
         if ($items && !$items instanceof ItemBag) {
@@ -140,14 +114,40 @@ class RestAuthorizeRequest extends AbstractRestRequest
     public function getCustomerDetails()
     {
         return [
-            'firstName'          => $this->getCard()->getFirstName(),
-            'familyName'         => $this->getCard()->getLastName(),
-            'email'              => $this->getCard()->getEmail(),
-            'dateOfBirth'        => $this->getDateOfBirth(),
-            'gender'             => $this->getCard()->getGender(),
-            'phoneNumber'        => $this->getCard()->getPhone(),
-            'deliveryAddress'    => $this->getDeliveryAddress(),
+            'firstName' => $this->getCard()->getFirstName(),
+            'familyName' => $this->getCard()->getLastName(),
+            'email' => $this->getCard()->getEmail(),
+            'dateOfBirth' => $this->getDateOfBirth(),
+            'gender' => $this->getCard()->getGender(),
+            'phoneNumber' => $this->getCard()->getPhone(),
+            'deliveryAddress' => $this->getDeliveryAddress(),
             'residentialAddress' => $this->getResidentialAddress(),
+        ];
+    }
+
+    public function getDeliveryAddress()
+    {
+        $card = $this->getCard();
+
+        return [
+            'line1' => $card->getShippingAddress1(),
+            'line2' => $card->getShippingAddress2(),
+            'suburb' => $card->getShippingCity(),
+            'state' => $card->getShippingState(),
+            'postCode' => $card->getShippingPostcode(),
+        ];
+    }
+
+    public function getResidentialAddress()
+    {
+        $card = $this->getCard();
+
+        return [
+            'line1' => $card->getBillingAddress1(),
+            'line2' => $card->getBillingAddress2(),
+            'suburb' => $card->getBillingCity(),
+            'state' => $card->getBillingState(),
+            'postCode' => $card->getBillingPostcode(),
         ];
     }
 
@@ -155,12 +155,12 @@ class RestAuthorizeRequest extends AbstractRestRequest
     {
         return [
             'online' => [
-                'callbackUrl'      => $this->getReturnUrl(),
-                'cancelUrl'        => $this->getCancelUrl(),
-                'failUrl'          => $this->getFailedUrl(),
+                'callbackUrl' => $this->getReturnUrl(),
+                'cancelUrl' => $this->getCancelUrl(),
+                'failUrl' => $this->getFailedUrl(),
                 'planCreationType' => $this->getPlanCreationType() ?: PlanCreationType::CREATE_INSTANT,
-                'deliveryMethod'   => $this->getDeliveryMethod() ?: DeliveryMethod::DELIVERY,
-                'customerDetails'  => $this->getCustomerDetails(),
+                'deliveryMethod' => $this->getDeliveryMethod() ?: DeliveryMethod::DELIVERY,
+                'customerDetails' => $this->getCustomerDetails(),
             ],
         ];
     }
@@ -170,20 +170,7 @@ class RestAuthorizeRequest extends AbstractRestRequest
         return [
             'posApp' => [
                 'employeeCode' => $this->getEmployeeCode(),
-                'customerId'   => $this->getCustomerId(),
-            ],
-        ];
-    }
-
-    public function getDataForPosWeb()
-    {
-        return [
-            'posWeb' => [
-                'planCreationType' => $this->getPlanCreationType() ?: PlanCreationType::CREATE_INSTANT,
-                'employeeCode'     => $this->getEmployeeCode(),
-                'callbackUrl'      => $this->getReturnUrl(),
-                'cancelUrl'        => $this->getCancelUrl(),
-                'failUrl'          => $this->getFailedUrl(),
+                'customerId' => $this->getCustomerId(),
             ],
         ];
     }
@@ -195,7 +182,7 @@ class RestAuthorizeRequest extends AbstractRestRequest
         $method = "getDataFor{$origin}";
 
         if (method_exists($this, $method)) {
-            return $this->$method();
+            return $this->{$method}();
         }
 
         return [];
@@ -207,13 +194,13 @@ class RestAuthorizeRequest extends AbstractRestRequest
 
         foreach ($this->getItems()->all() as $item) {
             $stack[] = [
-                'itemName'            => $item->getName(),
-                'itemGroup'           => $item->getItemGroup(),
-                'itemCode'            => $item->getItemCode(),
-                'itemGroupCode'       => $item->getItemGroupCode(),
+                'itemName' => $item->getName(),
+                'itemGroup' => $item->getItemGroup(),
+                'itemCode' => $item->getItemCode(),
+                'itemGroupCode' => $item->getItemGroupCode(),
                 'itemRetailUnitPrice' => $this->getCentAmount($item->getPrice()),
-                'itemQty'             => $item->getQuantity(),
-                'itemRetailCharge'    => $this->getCentAmount($item->getTotalPrice()),
+                'itemQty' => $item->getQuantity(),
+                'itemRetailCharge' => $this->getCentAmount($item->getTotalPrice()),
             ];
         }
 
@@ -224,11 +211,13 @@ class RestAuthorizeRequest extends AbstractRestRequest
     {
         $this->validate('card', 'returnUrl', 'cancelUrl', 'failedUrl', 'amount');
 
-        $stack = array_merge(['customerJourney' => $this->getCustomerJourney()], [
-            'purchasePrice'    => $this->getCentAmount($this->getAmount()),
-            'retailerOrderNo'  => $this->getRetailerOrderNo(),
+        $stack = array_merge([
+            'customerJourney' => $this->getCustomerJourney(),
+        ], [
+            'purchasePrice' => $this->getCentAmount($this->getAmount()),
+            'retailerOrderNo' => $this->getRetailerOrderNo(),
             'goodsDescription' => $this->getGoodsDescription(),
-            'cart'             => $this->getCartItems(),
+            'cart' => $this->getCartItems(),
         ]);
 
         return $stack;
@@ -247,25 +236,16 @@ class RestAuthorizeRequest extends AbstractRestRequest
 
         $response = $this->httpClient->post($url, $headers, json_encode($data))->send();
 
-        $data = json_decode($response->getBody(), true);
-
-        return $this->createResponse($data, $response->getHeaders(), $response->getStatusCode());
+        return $this->createResponse($response->json(), $response->getHeaders(), $response->getStatusCode());
     }
 
     protected function getEndpoint()
     {
-        return parent::getEndpoint().'orders';
+        return parent::getEndpoint() . 'orders';
     }
 
-    /**
-     * @param $data
-     * @param array $headers
-     * @param $status
-     *
-     * @return \Omnipay\Openpay\Message\RestAuthorizeResponse
-     */
     protected function createResponse($data, $headers = [], $status = 404)
     {
-        return $this->response = new RestAuthorizeResponse($this, $data, $headers, $status);
+        return $this->response = new AuthorizeResponse($this, $data, $headers, $status);
     }
 }

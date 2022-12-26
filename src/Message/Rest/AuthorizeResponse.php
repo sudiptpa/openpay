@@ -1,13 +1,13 @@
 <?php
 
-namespace Omnipay\Openpay\Message;
+namespace Omnipay\Openpay\Message\Rest;
 
 use Omnipay\Common\Message\RedirectResponseInterface;
 
 /**
- * Class RestAuthorizeResponse.
+ * Class AuthorizeResponse.
  */
-class RestAuthorizeResponse extends AbstractRestResponse implements RedirectResponseInterface
+class AuthorizeResponse extends AbstractRestResponse implements RedirectResponseInterface
 {
     public function getRedirectMethod()
     {
@@ -24,9 +24,6 @@ class RestAuthorizeResponse extends AbstractRestResponse implements RedirectResp
         return isset($this->data['orderId']) ? $this->data['orderId'] : null;
     }
 
-    /**
-     * @return bool
-     */
     public function isSuccessful()
     {
         $statusCode = $this->getStatusCode();
@@ -44,9 +41,6 @@ class RestAuthorizeResponse extends AbstractRestResponse implements RedirectResp
         return isset($this->data['nextAction']) ? $this->data['nextAction'] : null;
     }
 
-    /**
-     * @return string
-     */
     public function getTransactionToken()
     {
         if ($this->isRequestFormPost()) {
@@ -60,9 +54,6 @@ class RestAuthorizeResponse extends AbstractRestResponse implements RedirectResp
         }
     }
 
-    /**
-     * @return string
-     */
     public function getPlanID()
     {
         if ($this->isRequestFormPost()) {
@@ -81,17 +72,11 @@ class RestAuthorizeResponse extends AbstractRestResponse implements RedirectResp
         return isset($this->data['nextAction']['type']) && $this->data['nextAction']['type'] == 'FormPost';
     }
 
-    /**
-     * @return bool
-     */
     public function isRedirect()
     {
         return $this->isRequestFormPost();
     }
 
-    /**
-     * @return string
-     */
     public function getRedirectUrl()
     {
         if ($this->isRequestFormPost()) {

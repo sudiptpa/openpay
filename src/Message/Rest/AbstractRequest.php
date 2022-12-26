@@ -1,11 +1,11 @@
 <?php
 
-namespace Omnipay\Openpay\Message;
+namespace Omnipay\Openpay\Message\Rest;
 
 /**
- * Class AbstractRestRequest.
+ * Class AbstractRequest.
  */
-abstract class AbstractRestRequest extends \Omnipay\Common\Message\AbstractRequest
+abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
     protected $liveEndpoint = 'https://api.myopenpay.com.au/v1/merchant/';
 
