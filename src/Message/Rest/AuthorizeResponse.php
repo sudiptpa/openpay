@@ -7,7 +7,7 @@ use Omnipay\Common\Message\RedirectResponseInterface;
 /**
  * Class AuthorizeResponse.
  */
-class AuthorizeResponse extends AbstractRestResponse implements RedirectResponseInterface
+class AuthorizeResponse extends AbstractResponse implements RedirectResponseInterface
 {
     public function getRedirectMethod()
     {
@@ -19,16 +19,16 @@ class AuthorizeResponse extends AbstractRestResponse implements RedirectResponse
         return [];
     }
 
-    public function getOrderId()
-    {
-        return isset($this->data['orderId']) ? $this->data['orderId'] : null;
-    }
-
     public function isSuccessful()
     {
         $statusCode = $this->getStatusCode();
 
         return $statusCode >= 200 && $statusCode <= 399;
+    }
+
+    public function getOrderId()
+    {
+        return isset($this->data['orderId']) ? $this->data['orderId'] : null;
     }
 
     public function getBlackListMatch()

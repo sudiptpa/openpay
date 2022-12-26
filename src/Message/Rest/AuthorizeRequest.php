@@ -22,6 +22,16 @@ class AuthorizeRequest extends AbstractRequest
         return $this->setParameter('origin', $value);
     }
 
+    public function getSource()
+    {
+        return $this->getParameter('source');
+    }
+
+    public function setSource($value)
+    {
+        return $this->setParameter('source', $value);
+    }
+
     public function getFailedUrl()
     {
         return $this->getParameter('failedUrl');
@@ -219,6 +229,10 @@ class AuthorizeRequest extends AbstractRequest
             'goodsDescription' => $this->getGoodsDescription(),
             'cart'             => $this->getCartItems(),
         ]);
+
+        if ($source = $this->getSource()) {
+            $stack['source'] = $source;
+        }
 
         return $stack;
     }

@@ -70,7 +70,7 @@ class RestGateway extends AbstractGateway
      */
     public function authorize(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\Openpay\Message\RestAuthorizeRequest', $parameters);
+        return $this->createRequest('\Omnipay\Openpay\Message\Rest\AuthorizeRequest', $parameters);
     }
 
     /**
