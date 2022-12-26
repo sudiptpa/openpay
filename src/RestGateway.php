@@ -9,17 +9,11 @@ use Omnipay\Common\AbstractGateway;
  */
 class RestGateway extends AbstractGateway
 {
-    /**
-     * @return string
-     */
     public function getName()
     {
         return 'Openpay Rest';
     }
 
-    /**
-     * @return array
-     */
     public function getDefaultParameters()
     {
         return [
@@ -29,40 +23,34 @@ class RestGateway extends AbstractGateway
         ];
     }
 
-    /**
-     * @return string
-     */
     public function getApiKey()
     {
         return $this->getParameter('apiKey');
     }
 
-    /**
-     * @param $value
-     *
-     * @return string
-     */
     public function setApiKey($value)
     {
         return $this->setParameter('apiKey', $value);
     }
 
-    /**
-     * @return string
-     */
     public function getApiToken()
     {
         return $this->getParameter('apiToken');
     }
 
-    /**
-     * @param $value
-     *
-     * @return string
-     */
     public function setApiToken($value)
     {
         return $this->setParameter('apiToken', $value);
+    }
+
+    public function getApiVersion()
+    {
+        return $this->getParameter('apiVersion');
+    }
+
+    public function setApiVersion($value)
+    {
+        return $this->setParameter('apiVersion', $value);
     }
 
     /**
