@@ -2,7 +2,6 @@
 
 namespace Omnipay\Openpay;
 
-use Omnipay\Omnipay;
 use Omnipay\Openpay\Message\Rest\AuthorizeResponse;
 use Omnipay\Openpay\Message\Rest\CaptureResponse;
 use Omnipay\Openpay\Message\Rest\FetchTransactionResponse;
@@ -35,7 +34,7 @@ class TestRestGateway extends \Omnipay\Tests\GatewayTestCase
         $this->gateway = new RestGateway($this->getHttpClient(), $this->getHttpRequest());
 
         $this->gateway->initialize([
-            'apiKey' => $this->getApiKey(),
+            'apiKey'   => $this->getApiKey(),
             'apiToken' => $this->getApiToken(),
             'testMode' => $this->getTestMode(),
         ]);
@@ -95,25 +94,25 @@ class TestRestGateway extends \Omnipay\Tests\GatewayTestCase
     public function getOptionsForAuthorize()
     {
         return [
-            'amount' => '200.00',
-            'card' => $this->getValidAUCard(),
-            'returnUrl' => 'https://example.com/return',
-            'cancelUrl' => 'https://example.com/cancel',
-            'failedUrl' => 'https://example.com/fail',
+            'amount'          => '200.00',
+            'card'            => $this->getValidAUCard(),
+            'returnUrl'       => 'https://example.com/return',
+            'cancelUrl'       => 'https://example.com/cancel',
+            'failedUrl'       => 'https://example.com/fail',
             'retailerOrderNo' => (string) rand(10000, 99999),
-            'items' => [
+            'items'           => [
                 new RestItem([
-                    'name' => 'Item 1',
-                    'itemCode' => '12345',
-                    'quantity' => 3,
-                    'price' => '30.00',
+                    'name'       => 'Item 1',
+                    'itemCode'   => '12345',
+                    'quantity'   => 3,
+                    'price'      => '30.00',
                     'totalPrice' => '90.00',
                 ]),
                 new RestItem([
-                    'name' => 'Shipping',
-                    'itemCode' => '-',
-                    'quantity' => 1,
-                    'price' => '110.00',
+                    'name'       => 'Shipping',
+                    'itemCode'   => '-',
+                    'quantity'   => 1,
+                    'price'      => '110.00',
                     'totalPrice' => '110.00',
                 ]),
             ],
@@ -123,24 +122,24 @@ class TestRestGateway extends \Omnipay\Tests\GatewayTestCase
     public function getValidAUCard()
     {
         return [
-            'firstName' => 'Example',
-            'lastName' => 'User',
-            'email' => 'customer@gmail.com',
-            'phone' => '0400123123',
-            'billingAddress1' => '123 Billing St',
-            'billingAddress2' => 'Billsville',
-            'billingCity' => 'Billstown',
-            'billingPostcode' => '3133',
-            'billingState' => 'VIC',
-            'billingCountry' => 'AU',
-            'billingPhone' => '0400 123 123',
+            'firstName'        => 'Example',
+            'lastName'         => 'User',
+            'email'            => 'customer@gmail.com',
+            'phone'            => '0400123123',
+            'billingAddress1'  => '123 Billing St',
+            'billingAddress2'  => 'Billsville',
+            'billingCity'      => 'Billstown',
+            'billingPostcode'  => '3133',
+            'billingState'     => 'VIC',
+            'billingCountry'   => 'AU',
+            'billingPhone'     => '0400 123 123',
             'shippingAddress1' => '123 Shipping St',
             'shippingAddress2' => 'Shipsville',
-            'shippingCity' => 'Shipstown',
+            'shippingCity'     => 'Shipstown',
             'shippingPostcode' => '3000',
-            'shippingState' => 'VIC',
-            'shippingCountry' => 'AU',
-            'shippingPhone' => '03 8500 0000',
+            'shippingState'    => 'VIC',
+            'shippingCountry'  => 'AU',
+            'shippingPhone'    => '03 8500 0000',
         ];
     }
 }
