@@ -12,73 +12,27 @@ processing library for PHP. This package implements Openpay support for Omnipay.
 
 ## Installation
 
-Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply require `league/omnipay` and `sudiptpa/omnipay-openpay` with Composer:
+Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply add it
+to your `composer.json` file:
 
-```
-composer require league/omnipay sudiptpa/omnipay-openpay
-```
-
-## Basic Usage
-
-```php
-    use Omnipay\Omnipay;
-
-    $gateway = Omnipay::create('Openpay_Shared');
-
-    $gateway->setMerchantId('xxxxxxx|xxxxxxx-xxx-xxxx');
-    $gateway->setAuthToken('xxxxxxxx');
-
-    $gateway->setTestMode(true);
-
-    try {
-        $response = $gateway->order([
-            'purchasePrice' => '409.50',
-        ])->send();
-
-        $planID = $response->getPlanID();
-
-        $response = $gateway->purchase([
-            'firstName' => 'Sujip',
-            'lastName' => 'Thapa',
-            'returnUrl' => 'https://example.com/payment/1/complete',
-            'cancelUrl' => 'https://example.com/payment/1/cancel',
-            'failedUrl' => 'https://example.com/payment/1/failed',
-            'retailerOrderNo' => '145000112',
-            'email' => 'buy@example.com',
-            'postCode' => '1234',
-            'city' => 'Test',
-            'address1' => 'Test City',
-            'state' => 'ABCD',
-            'phone' => '99987765555',
-            'purchasePrice' => '409.50',
-            'planID' => $planID,
-        ])->send();
-
-        if ($response->isRedirect()) {
-            $response->redirect();
-        }
-    } catch (Exception $e) {
-        return $e->getMessage();
+```json
+{
+    "require": {
+        "sudiptpa/omnipay-openpay": "~3.0"
     }
-
-    // Complete Purchase
-    $response = $gateway->orderStatus([
-        'planID' => $order->transaction_id,
-    ])->send();
-
-    if ($response->isApproved()) {
-        // success
-    }
+}
 ```
+
+And run composer to update your dependencies:
+
+    $ curl -s http://getcomposer.org/installer | php
+    $ php composer.phar update
+
+
+Follow the respective integration guidelines for [REST API](https://github.com/sudiptpa/openpay/blob/master/OPENPAY_REST.md), [XML API](https://github.com/sudiptpa/openpay/blob/master/OPENPAY_XML.md)
+
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.
-
-## Contributing
-
-Contributions are **welcome** and will be fully **credited**.
-
-Contributions can be made via a Pull Request on [Github](https://github.com/sudiptpa/openpay).
-
 
 ## Support
 
