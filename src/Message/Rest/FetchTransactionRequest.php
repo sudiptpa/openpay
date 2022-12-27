@@ -12,15 +12,17 @@ class FetchTransactionRequest extends AbstractRequest
         $this->validate('orderId');
 
         return [
-            'orderId' => $this->getOrderId(),
+            'OrderId' => $this->getOrderId(),
         ];
     }
 
     public function sendData($data = [])
     {
-        $response = $this->httpClient->get($this->getEndpoint(), $this->getHeaders(), $data)->send();
+        $response = $this->httpClient->request('GET', $this->getEndpoint(), $this->getHeaders());
 
-        return $this->createResponse($response->json(), $response->getHeaders(), $response->getStatusCode());
+        $result = json_decode($response->getBody()->getContents(), true);
+
+        return $this->createResponse($result, $response->getHeaders(), $response->getStatusCode());
     }
 
     protected function getEndpoint()

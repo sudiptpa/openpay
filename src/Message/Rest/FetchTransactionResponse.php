@@ -14,6 +14,26 @@ class FetchTransactionResponse extends AbstractResponse
         return $statusCode >= 200 && $statusCode <= 399;
     }
 
+    public function isApproved()
+    {
+        return in_array($this->getOrderStatus(), ['Approved']);
+    }
+
+    public function isRefunded()
+    {
+        return in_array($this->getOrderStatus(), ['Refunded']);
+    }
+
+    public function isFinished()
+    {
+        return in_array($this->getOrderStatus(), ['Finished']);
+    }
+
+    public function isActive()
+    {
+        return in_array($this->getOrderStatus(), ['Active']);
+    }
+
     public function getOrderId()
     {
         return isset($this->data['orderId']) ? $this->data['orderId'] : null;
@@ -22,11 +42,6 @@ class FetchTransactionResponse extends AbstractResponse
     public function getOrderStatus()
     {
         return isset($this->data['orderStatus']) ? $this->data['orderStatus'] : null;
-    }
-
-    public function isApproved()
-    {
-        return in_array($this->getOrderStatus(), ['Approved']);
     }
 
     public function getPlanStatus()

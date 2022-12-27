@@ -18,9 +18,11 @@ class CaptureRequest extends AbstractRequest
 
     public function sendData($data = [])
     {
-        $response = $this->httpClient->post($this->getEndpoint(), $this->getHeaders(), json_encode($data))->send();
+        $response = $this->httpClient->request('POST', $this->getEndpoint(), $this->getHeaders(), json_encode($data));
 
-        return $this->createResponse($response->json(), $response->getHeaders(), $response->getStatusCode());
+        $result = json_decode($response->getBody()->getContents(), true);
+
+        return $this->createResponse($result, $response->getHeaders(), $response->getStatusCode());
     }
 
     protected function getEndpoint()
