@@ -2,12 +2,10 @@
 
 namespace Omnipay\Openpay;
 
-use Omnipay\Openpay\Item;
 use Omnipay\Openpay\Message\Rest\AuthorizeResponse;
 use Omnipay\Openpay\Message\Rest\CaptureResponse;
 use Omnipay\Openpay\Message\Rest\FetchTransactionResponse;
 use Omnipay\Openpay\Message\Rest\OrderLimitResponse;
-use Omnipay\Openpay\RestGateway;
 
 class RestGatewayTest extends \Omnipay\Tests\GatewayTestCase
 {

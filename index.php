@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__.'/vendor/autoload.php';
 
 use Omnipay\Common\CreditCard;
 use Omnipay\Omnipay;
@@ -15,44 +15,44 @@ $gateway->setApiVersion('1.20210320');
 $gateway->setTestMode(true);
 
 $card = new CreditCard([
-    'billingFirstName' => 'Example',
-    'billingLastName' => 'User',
-    'email' => 'example@example.com',
-    'billingPhone' => '1234567890',
-    'billingAddress1' => '6 Test Street',
-    'billingAddress2' => 'Test',
-    'billingCity' => 'Test',
-    'billingState' => 'TST',
-    'billingPostcode' => '1234',
-    'billingCountry' => 'AU',
+    'billingFirstName'  => 'Example',
+    'billingLastName'   => 'User',
+    'email'             => 'example@example.com',
+    'billingPhone'      => '1234567890',
+    'billingAddress1'   => '6 Test Street',
+    'billingAddress2'   => 'Test',
+    'billingCity'       => 'Test',
+    'billingState'      => 'TST',
+    'billingPostcode'   => '1234',
+    'billingCountry'    => 'AU',
     'shippingFirstName' => 'Example',
-    'shippingLastName' => 'User',
-    'shippingPhone' => '1234567890',
-    'shippingAddress1' => '6 Test Street',
-    'shippingAddress2' => 'Test',
-    'shippingCity' => 'Test',
-    'shippingState' => 'TST',
-    'shippingPostcode' => '1234',
-    'shippingCountry' => 'AU',
+    'shippingLastName'  => 'User',
+    'shippingPhone'     => '1234567890',
+    'shippingAddress1'  => '6 Test Street',
+    'shippingAddress2'  => 'Test',
+    'shippingCity'      => 'Test',
+    'shippingState'     => 'TST',
+    'shippingPostcode'  => '1234',
+    'shippingCountry'   => 'AU',
 ]);
 
 $response = $gateway->authorize([
-    'amount' => 1000,
-    'card' => $card,
+    'amount'          => 1000,
+    'card'            => $card,
     'retailerOrderNo' => time(),
-    'items' => [
+    'items'           => [
         new Item([
-            'name' => 'Item 1',
-            'itemCode' => '12345',
-            'quantity' => 3,
-            'price' => '30.00',
+            'name'       => 'Item 1',
+            'itemCode'   => '12345',
+            'quantity'   => 3,
+            'price'      => '30.00',
             'totalPrice' => '90.00',
         ]),
         new Item([
-            'name' => 'Shipping',
-            'itemCode' => '12345',
-            'quantity' => 1,
-            'price' => '110.00',
+            'name'       => 'Shipping',
+            'itemCode'   => '12345',
+            'quantity'   => 1,
+            'price'      => '110.00',
             'totalPrice' => '110.00',
         ]),
     ],
