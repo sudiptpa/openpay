@@ -7,7 +7,7 @@ use Omnipay\Openpay\Message\Rest\CaptureResponse;
 use Omnipay\Openpay\Message\Rest\FetchTransactionResponse;
 use Omnipay\Openpay\Message\Rest\OrderLimitResponse;
 
-class TestRestGateway extends \Omnipay\Tests\GatewayTestCase
+class RestGatewayTest extends \Omnipay\Tests\GatewayTestCase
 {
     /** @var RestGateway */
     protected $gateway;
@@ -48,7 +48,7 @@ class TestRestGateway extends \Omnipay\Tests\GatewayTestCase
         $response = $this->gateway->orderLimit()->send();
         $this->assertInstanceOf(OrderLimitResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
-        $this->assertEquals(100, $response->getMinPrice());
+        $this->assertEquals(5000, $response->getMinPrice());
         $this->assertEquals(500000, $response->getMaxPrice());
     }
 
@@ -101,14 +101,14 @@ class TestRestGateway extends \Omnipay\Tests\GatewayTestCase
             'failedUrl'       => 'https://example.com/fail',
             'retailerOrderNo' => (string) rand(10000, 99999),
             'items'           => [
-                new RestItem([
+                new Item([
                     'name'       => 'Item 1',
                     'itemCode'   => '12345',
                     'quantity'   => 3,
                     'price'      => '30.00',
                     'totalPrice' => '90.00',
                 ]),
-                new RestItem([
+                new Item([
                     'name'       => 'Shipping',
                     'itemCode'   => '-',
                     'quantity'   => 1,

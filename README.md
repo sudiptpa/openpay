@@ -29,7 +29,7 @@ And run composer to update your dependencies:
     $ php composer.phar update
 
 
-Follow the respective integration guidelines for [REST API](https://github.com/sudiptpa/openpay/blob/master/OPENPAY_REST.md) vs [XML API](https://github.com/sudiptpa/openpay/blob/master/OPENPAY_XML.md)
+Follow the respective integration guidelines for [REST API](https://github.com/sudiptpa/openpay/blob/master/OPENPAY_REST.md), [XML API](https://github.com/sudiptpa/openpay/blob/master/OPENPAY_XML.md)
 
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.
