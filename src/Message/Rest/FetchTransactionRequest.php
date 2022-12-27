@@ -12,7 +12,7 @@ class FetchTransactionRequest extends AbstractRequest
         $this->validate('orderId');
 
         return [
-            'orderId' => $this->getOrderId(),
+            'OrderId' => $this->getOrderId(),
         ];
     }
 
