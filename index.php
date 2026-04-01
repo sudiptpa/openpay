@@ -62,11 +62,11 @@ $response = $gateway->authorize([
 ])->send();
 
 var_dump($response->getData());
-exit();
+exit;
 
 $response = $gateway->orderLimit([
     'origin' => OriginType::QUERY_ORIGIN_ONLINE,
 ])->send();
 
 var_dump($response->getData());
-exit();
+exit;

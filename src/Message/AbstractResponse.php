@@ -11,7 +11,7 @@ class AbstractResponse extends \Omnipay\Common\Message\AbstractResponse
 {
     /**
      * @param RequestInterface $request
-     * @param $data
+     * @param                  $data
      */
     public function __construct(RequestInterface $request, $data)
     {

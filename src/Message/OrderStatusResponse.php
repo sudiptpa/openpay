@@ -11,7 +11,7 @@ class OrderStatusResponse extends AbstractResponse
 {
     /**
      * @param RequestInterface $request
-     * @param $data
+     * @param                  $data
      */
     public function __construct(RequestInterface $request, $data)
     {
